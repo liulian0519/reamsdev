@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xupt.edu.liulian.reams.mapper.GreenHouseMapper">
+  <resultMap id="BaseResultMap" type="com.xupt.edu.liulian.reams.pojo.GreenHouse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="area_type" jdbcType="VARCHAR" property="area_type" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="build_type" jdbcType="VARCHAR" property="build_type" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="decoration" jdbcType="VARCHAR" property="decoration" />
+    <result column="ladder_house" jdbcType="VARCHAR" property="ladder_house" />
+    <result column="heating" jdbcType="INTEGER" property="heating" />
+    <result column="elevator" jdbcType="INTEGER" property="elevator" />
+    <result column="build_use" jdbcType="VARCHAR" property="build_use" />
+    <result column="right_age" jdbcType="VARCHAR" property="right_age" />
+    <result column="con_time" jdbcType="DATE" property="con_time" />
+    <result column="mortgage" jdbcType="INTEGER" property="mortgage" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="community_id" jdbcType="INTEGER" property="community_id" />
+    <result column="housey" jdbcType="VARCHAR" property="housey" />
+    <result column="housex" jdbcType="VARCHAR" property="housex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, area, area_type, price, floor, build_type, position, decoration, ladder_house, 
+    heating, elevator, build_use, right_age, con_time, mortgage, name, address, community_id, 
+    housey, housex
+  </sql>
+  <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from greenhouse
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from greenhouse
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from greenhouse
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse" useGeneratedKeys="true">
+    insert into greenhouse (area, area_type, price, 
+      floor, build_type, position, 
+      decoration, ladder_house, heating, 
+      elevator, build_use, right_age, 
+      con_time, mortgage, name, 
+      address, community_id, housey, 
+      housex)
+    values (#{area,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{floor,jdbcType=VARCHAR}, #{build_type,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{decoration,jdbcType=VARCHAR}, #{ladder_house,jdbcType=VARCHAR}, #{heating,jdbcType=INTEGER}, 
+      #{elevator,jdbcType=INTEGER}, #{build_use,jdbcType=VARCHAR}, #{right_age,jdbcType=VARCHAR}, 
+      #{con_time,jdbcType=DATE}, #{mortgage,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{community_id,jdbcType=INTEGER}, #{housey,jdbcType=VARCHAR}, 
+      #{housex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse" useGeneratedKeys="true">
+    insert into greenhouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="area != null">
+        area,
+      </if>
+      <if test="area_type != null">
+        area_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="floor != null">
+        floor,
+      </if>
+      <if test="build_type != null">
+        build_type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="decoration != null">
+        decoration,
+      </if>
+      <if test="ladder_house != null">
+        ladder_house,
+      </if>
+      <if test="heating != null">
+        heating,
+      </if>
+      <if test="elevator != null">
+        elevator,
+      </if>
+      <if test="build_use != null">
+        build_use,
+      </if>
+      <if test="right_age != null">
+        right_age,
+      </if>
+      <if test="con_time != null">
+        con_time,
+      </if>
+      <if test="mortgage != null">
+        mortgage,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="community_id != null">
+        community_id,
+      </if>
+      <if test="housey != null">
+        housey,
+      </if>
+      <if test="housex != null">
+        housex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="area_type != null">
+        #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="build_type != null">
+        #{build_type,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null">
+        #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="ladder_house != null">
+        #{ladder_house,jdbcType=VARCHAR},
+      </if>
+      <if test="heating != null">
+        #{heating,jdbcType=INTEGER},
+      </if>
+      <if test="elevator != null">
+        #{elevator,jdbcType=INTEGER},
+      </if>
+      <if test="build_use != null">
+        #{build_use,jdbcType=VARCHAR},
+      </if>
+      <if test="right_age != null">
+        #{right_age,jdbcType=VARCHAR},
+      </if>
+      <if test="con_time != null">
+        #{con_time,jdbcType=DATE},
+      </if>
+      <if test="mortgage != null">
+        #{mortgage,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="community_id != null">
+        #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="housey != null">
+        #{housey,jdbcType=VARCHAR},
+      </if>
+      <if test="housex != null">
+        #{housex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse">
+    update greenhouse
+    <set>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="area_type != null">
+        area_type = #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="build_type != null">
+        build_type = #{build_type,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null">
+        decoration = #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="ladder_house != null">
+        ladder_house = #{ladder_house,jdbcType=VARCHAR},
+      </if>
+      <if test="heating != null">
+        heating = #{heating,jdbcType=INTEGER},
+      </if>
+      <if test="elevator != null">
+        elevator = #{elevator,jdbcType=INTEGER},
+      </if>
+      <if test="build_use != null">
+        build_use = #{build_use,jdbcType=VARCHAR},
+      </if>
+      <if test="right_age != null">
+        right_age = #{right_age,jdbcType=VARCHAR},
+      </if>
+      <if test="con_time != null">
+        con_time = #{con_time,jdbcType=DATE},
+      </if>
+      <if test="mortgage != null">
+        mortgage = #{mortgage,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="community_id != null">
+        community_id = #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="housey != null">
+        housey = #{housey,jdbcType=VARCHAR},
+      </if>
+      <if test="housex != null">
+        housex = #{housex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse">
+    update greenhouse
+    set area = #{area,jdbcType=VARCHAR},
+      area_type = #{area_type,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      build_type = #{build_type,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      decoration = #{decoration,jdbcType=VARCHAR},
+      ladder_house = #{ladder_house,jdbcType=VARCHAR},
+      heating = #{heating,jdbcType=INTEGER},
+      elevator = #{elevator,jdbcType=INTEGER},
+      build_use = #{build_use,jdbcType=VARCHAR},
+      right_age = #{right_age,jdbcType=VARCHAR},
+      con_time = #{con_time,jdbcType=DATE},
+      mortgage = #{mortgage,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      community_id = #{community_id,jdbcType=INTEGER},
+      housey = #{housey,jdbcType=VARCHAR},
+      housex = #{housex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

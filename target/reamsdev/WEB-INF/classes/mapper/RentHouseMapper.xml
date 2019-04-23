@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xupt.edu.liulian.reams.mapper.RentHouseMapper">
+  <resultMap id="BaseResultMap" type="com.xupt.edu.liulian.reams.pojo.RentHouse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="area_type" jdbcType="VARCHAR" property="area_type" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="rent_type" jdbcType="TINYINT" property="rent_type" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="con_time" jdbcType="DATE" property="con_time" />
+    <result column="rent_time" jdbcType="VARCHAR" property="rent_time" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="eletric" jdbcType="VARCHAR" property="eletric" />
+    <result column="elevator" jdbcType="TINYINT" property="elevator" />
+    <result column="water" jdbcType="VARCHAR" property="water" />
+    <result column="fire" jdbcType="TINYINT" property="fire" />
+    <result column="tv" jdbcType="TINYINT" property="tv" />
+    <result column="fridge" jdbcType="TINYINT" property="fridge" />
+    <result column="washer" jdbcType="TINYINT" property="washer" />
+    <result column="air_condition" jdbcType="TINYINT" property="air_condition" />
+    <result column="shower" jdbcType="TINYINT" property="shower" />
+    <result column="bed" jdbcType="TINYINT" property="bed" />
+    <result column="heating" jdbcType="TINYINT" property="heating" />
+    <result column="wifi" jdbcType="TINYINT" property="wifi" />
+    <result column="gas" jdbcType="TINYINT" property="gas" />
+    <result column="closespress" jdbcType="TINYINT" property="closespress" />
+    <result column="community_id" jdbcType="INTEGER" property="community_id" />
+    <result column="housey" jdbcType="VARCHAR" property="housey" />
+    <result column="housex" jdbcType="VARCHAR" property="housex" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, address, area_type, area, price, rent_type, position, con_time, rent_time, 
+    floor, eletric, elevator, water, fire, tv, fridge, washer, air_condition, shower, 
+    bed, heating, wifi, gas, closespress, community_id, housey, housex
+  </sql>
+  <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from renthouse
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from renthouse
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from renthouse
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouse" useGeneratedKeys="true">
+    insert into renthouse (name, address, area_type, 
+      area, price, rent_type, 
+      position, con_time, rent_time, 
+      floor, eletric, elevator, 
+      water, fire, tv, fridge, 
+      washer, air_condition, shower, 
+      bed, heating, wifi, 
+      gas, closespress, community_id, 
+      housey, housex)
+    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{rent_type,jdbcType=TINYINT}, 
+      #{position,jdbcType=VARCHAR}, #{con_time,jdbcType=DATE}, #{rent_time,jdbcType=VARCHAR}, 
+      #{floor,jdbcType=VARCHAR}, #{eletric,jdbcType=VARCHAR}, #{elevator,jdbcType=TINYINT}, 
+      #{water,jdbcType=VARCHAR}, #{fire,jdbcType=TINYINT}, #{tv,jdbcType=TINYINT}, #{fridge,jdbcType=TINYINT}, 
+      #{washer,jdbcType=TINYINT}, #{air_condition,jdbcType=TINYINT}, #{shower,jdbcType=TINYINT}, 
+      #{bed,jdbcType=TINYINT}, #{heating,jdbcType=TINYINT}, #{wifi,jdbcType=TINYINT}, 
+      #{gas,jdbcType=TINYINT}, #{closespress,jdbcType=TINYINT}, #{community_id,jdbcType=INTEGER}, 
+      #{housey,jdbcType=VARCHAR}, #{housex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouse" useGeneratedKeys="true">
+    insert into renthouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="area_type != null">
+        area_type,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="rent_type != null">
+        rent_type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="con_time != null">
+        con_time,
+      </if>
+      <if test="rent_time != null">
+        rent_time,
+      </if>
+      <if test="floor != null">
+        floor,
+      </if>
+      <if test="eletric != null">
+        eletric,
+      </if>
+      <if test="elevator != null">
+        elevator,
+      </if>
+      <if test="water != null">
+        water,
+      </if>
+      <if test="fire != null">
+        fire,
+      </if>
+      <if test="tv != null">
+        tv,
+      </if>
+      <if test="fridge != null">
+        fridge,
+      </if>
+      <if test="washer != null">
+        washer,
+      </if>
+      <if test="air_condition != null">
+        air_condition,
+      </if>
+      <if test="shower != null">
+        shower,
+      </if>
+      <if test="bed != null">
+        bed,
+      </if>
+      <if test="heating != null">
+        heating,
+      </if>
+      <if test="wifi != null">
+        wifi,
+      </if>
+      <if test="gas != null">
+        gas,
+      </if>
+      <if test="closespress != null">
+        closespress,
+      </if>
+      <if test="community_id != null">
+        community_id,
+      </if>
+      <if test="housey != null">
+        housey,
+      </if>
+      <if test="housex != null">
+        housex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area_type != null">
+        #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="rent_type != null">
+        #{rent_type,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="con_time != null">
+        #{con_time,jdbcType=DATE},
+      </if>
+      <if test="rent_time != null">
+        #{rent_time,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="eletric != null">
+        #{eletric,jdbcType=VARCHAR},
+      </if>
+      <if test="elevator != null">
+        #{elevator,jdbcType=TINYINT},
+      </if>
+      <if test="water != null">
+        #{water,jdbcType=VARCHAR},
+      </if>
+      <if test="fire != null">
+        #{fire,jdbcType=TINYINT},
+      </if>
+      <if test="tv != null">
+        #{tv,jdbcType=TINYINT},
+      </if>
+      <if test="fridge != null">
+        #{fridge,jdbcType=TINYINT},
+      </if>
+      <if test="washer != null">
+        #{washer,jdbcType=TINYINT},
+      </if>
+      <if test="air_condition != null">
+        #{air_condition,jdbcType=TINYINT},
+      </if>
+      <if test="shower != null">
+        #{shower,jdbcType=TINYINT},
+      </if>
+      <if test="bed != null">
+        #{bed,jdbcType=TINYINT},
+      </if>
+      <if test="heating != null">
+        #{heating,jdbcType=TINYINT},
+      </if>
+      <if test="wifi != null">
+        #{wifi,jdbcType=TINYINT},
+      </if>
+      <if test="gas != null">
+        #{gas,jdbcType=TINYINT},
+      </if>
+      <if test="closespress != null">
+        #{closespress,jdbcType=TINYINT},
+      </if>
+      <if test="community_id != null">
+        #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="housey != null">
+        #{housey,jdbcType=VARCHAR},
+      </if>
+      <if test="housex != null">
+        #{housex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouse">
+    update renthouse
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area_type != null">
+        area_type = #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="rent_type != null">
+        rent_type = #{rent_type,jdbcType=TINYINT},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="con_time != null">
+        con_time = #{con_time,jdbcType=DATE},
+      </if>
+      <if test="rent_time != null">
+        rent_time = #{rent_time,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="eletric != null">
+        eletric = #{eletric,jdbcType=VARCHAR},
+      </if>
+      <if test="elevator != null">
+        elevator = #{elevator,jdbcType=TINYINT},
+      </if>
+      <if test="water != null">
+        water = #{water,jdbcType=VARCHAR},
+      </if>
+      <if test="fire != null">
+        fire = #{fire,jdbcType=TINYINT},
+      </if>
+      <if test="tv != null">
+        tv = #{tv,jdbcType=TINYINT},
+      </if>
+      <if test="fridge != null">
+        fridge = #{fridge,jdbcType=TINYINT},
+      </if>
+      <if test="washer != null">
+        washer = #{washer,jdbcType=TINYINT},
+      </if>
+      <if test="air_condition != null">
+        air_condition = #{air_condition,jdbcType=TINYINT},
+      </if>
+      <if test="shower != null">
+        shower = #{shower,jdbcType=TINYINT},
+      </if>
+      <if test="bed != null">
+        bed = #{bed,jdbcType=TINYINT},
+      </if>
+      <if test="heating != null">
+        heating = #{heating,jdbcType=TINYINT},
+      </if>
+      <if test="wifi != null">
+        wifi = #{wifi,jdbcType=TINYINT},
+      </if>
+      <if test="gas != null">
+        gas = #{gas,jdbcType=TINYINT},
+      </if>
+      <if test="closespress != null">
+        closespress = #{closespress,jdbcType=TINYINT},
+      </if>
+      <if test="community_id != null">
+        community_id = #{community_id,jdbcType=INTEGER},
+      </if>
+      <if test="housey != null">
+        housey = #{housey,jdbcType=VARCHAR},
+      </if>
+      <if test="housex != null">
+        housex = #{housex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouse">
+    update renthouse
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      area_type = #{area_type,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      rent_type = #{rent_type,jdbcType=TINYINT},
+      position = #{position,jdbcType=VARCHAR},
+      con_time = #{con_time,jdbcType=DATE},
+      rent_time = #{rent_time,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      eletric = #{eletric,jdbcType=VARCHAR},
+      elevator = #{elevator,jdbcType=TINYINT},
+      water = #{water,jdbcType=VARCHAR},
+      fire = #{fire,jdbcType=TINYINT},
+      tv = #{tv,jdbcType=TINYINT},
+      fridge = #{fridge,jdbcType=TINYINT},
+      washer = #{washer,jdbcType=TINYINT},
+      air_condition = #{air_condition,jdbcType=TINYINT},
+      shower = #{shower,jdbcType=TINYINT},
+      bed = #{bed,jdbcType=TINYINT},
+      heating = #{heating,jdbcType=TINYINT},
+      wifi = #{wifi,jdbcType=TINYINT},
+      gas = #{gas,jdbcType=TINYINT},
+      closespress = #{closespress,jdbcType=TINYINT},
+      community_id = #{community_id,jdbcType=INTEGER},
+      housey = #{housey,jdbcType=VARCHAR},
+      housex = #{housex,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

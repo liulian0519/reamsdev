@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xupt.edu.liulian.reams.mapper.SaleOrderMapper">
+  <resultMap id="BaseResultMap" type="com.xupt.edu.liulian.reams.pojo.SaleOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sale_time" jdbcType="DATE" property="sale_time" />
+    <result column="area_type" jdbcType="VARCHAR" property="area_type" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="sale_type" jdbcType="VARCHAR" property="sale_type" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="greenhouse_id" jdbcType="INTEGER" property="greenhouse_id" />
+    <result column="newhouse_id" jdbcType="INTEGER" property="newhouse_id" />
+    <result column="renthouse_id" jdbcType="INTEGER" property="renthouse_id" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, sale_time, area_type, area, sale_type, price, phone, greenhouse_id, newhouse_id, 
+    renthouse_id
+  </sql>
+  <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.SaleOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sale_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sale_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.SaleOrder" useGeneratedKeys="true">
+    insert into sale_order (name, sale_time, area_type, 
+      area, sale_type, price, 
+      phone, greenhouse_id, newhouse_id, 
+      renthouse_id)
+    values (#{name,jdbcType=VARCHAR}, #{sale_time,jdbcType=DATE}, #{area_type,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{sale_type,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{greenhouse_id,jdbcType=INTEGER}, #{newhouse_id,jdbcType=INTEGER}, 
+      #{renthouse_id,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.SaleOrder" useGeneratedKeys="true">
+    insert into sale_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sale_time != null">
+        sale_time,
+      </if>
+      <if test="area_type != null">
+        area_type,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="sale_type != null">
+        sale_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="greenhouse_id != null">
+        greenhouse_id,
+      </if>
+      <if test="newhouse_id != null">
+        newhouse_id,
+      </if>
+      <if test="renthouse_id != null">
+        renthouse_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_time != null">
+        #{sale_time,jdbcType=DATE},
+      </if>
+      <if test="area_type != null">
+        #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_type != null">
+        #{sale_type,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="greenhouse_id != null">
+        #{greenhouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="newhouse_id != null">
+        #{newhouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="renthouse_id != null">
+        #{renthouse_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xupt.edu.liulian.reams.pojo.SaleOrder">
+    update sale_order
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_time != null">
+        sale_time = #{sale_time,jdbcType=DATE},
+      </if>
+      <if test="area_type != null">
+        area_type = #{area_type,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_type != null">
+        sale_type = #{sale_type,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="greenhouse_id != null">
+        greenhouse_id = #{greenhouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="newhouse_id != null">
+        newhouse_id = #{newhouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="renthouse_id != null">
+        renthouse_id = #{renthouse_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xupt.edu.liulian.reams.pojo.SaleOrder">
+    update sale_order
+    set name = #{name,jdbcType=VARCHAR},
+      sale_time = #{sale_time,jdbcType=DATE},
+      area_type = #{area_type,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      sale_type = #{sale_type,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      greenhouse_id = #{greenhouse_id,jdbcType=INTEGER},
+      newhouse_id = #{newhouse_id,jdbcType=INTEGER},
+      renthouse_id = #{renthouse_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
