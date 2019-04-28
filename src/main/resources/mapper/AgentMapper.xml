@@ -7,6 +7,7 @@
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -38,7 +39,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, introduce, phone, image
+    id, name, introduce, phone, image, type
   </sql>
   <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.AgentExample" resultMap="BaseResultMap">
     select
@@ -67,9 +68,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.Agent" useGeneratedKeys="true">
     insert into agent (name, introduce, phone, 
-      image)
+      image, type)
     values (#{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR})
+      #{image,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.Agent" useGeneratedKeys="true">
     insert into agent
@@ -86,6 +87,9 @@
       <if test="image != null">
         image,
       </if>
+      <if test="type != null">
+        type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -99,6 +103,9 @@
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -117,6 +124,9 @@
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -125,7 +135,8 @@
     set name = #{name,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR}
+      image = #{image,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

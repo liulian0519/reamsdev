@@ -22,6 +22,7 @@
     <result column="community_id" jdbcType="INTEGER" property="community_id" />
     <result column="housey" jdbcType="VARCHAR" property="housey" />
     <result column="housex" jdbcType="VARCHAR" property="housex" />
+    <result column="exam" jdbcType="INTEGER" property="exam" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -55,7 +56,7 @@
   <sql id="Base_Column_List">
     id, area, area_type, price, floor, build_type, position, decoration, ladder_house, 
     heating, elevator, build_use, right_age, con_time, mortgage, name, address, community_id, 
-    housey, housex
+    housey, housex, exam
   </sql>
   <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouseExample" resultMap="BaseResultMap">
     select
@@ -89,14 +90,14 @@
       elevator, build_use, right_age, 
       con_time, mortgage, name, 
       address, community_id, housey, 
-      housex)
+      housex, exam)
     values (#{area,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
       #{floor,jdbcType=VARCHAR}, #{build_type,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
       #{decoration,jdbcType=VARCHAR}, #{ladder_house,jdbcType=VARCHAR}, #{heating,jdbcType=INTEGER}, 
       #{elevator,jdbcType=INTEGER}, #{build_use,jdbcType=VARCHAR}, #{right_age,jdbcType=VARCHAR}, 
       #{con_time,jdbcType=DATE}, #{mortgage,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{community_id,jdbcType=INTEGER}, #{housey,jdbcType=VARCHAR}, 
-      #{housex,jdbcType=VARCHAR})
+      #{housex,jdbcType=VARCHAR}, #{exam,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse" useGeneratedKeys="true">
     insert into greenhouse
@@ -158,6 +159,9 @@
       <if test="housex != null">
         housex,
       </if>
+      <if test="exam != null">
+        exam,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="area != null">
@@ -216,6 +220,9 @@
       </if>
       <if test="housex != null">
         #{housex,jdbcType=VARCHAR},
+      </if>
+      <if test="exam != null">
+        #{exam,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -279,6 +286,9 @@
       <if test="housex != null">
         housex = #{housex,jdbcType=VARCHAR},
       </if>
+      <if test="exam != null">
+        exam = #{exam,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -302,7 +312,8 @@
       address = #{address,jdbcType=VARCHAR},
       community_id = #{community_id,jdbcType=INTEGER},
       housey = #{housey,jdbcType=VARCHAR},
-      housex = #{housex,jdbcType=VARCHAR}
+      housex = #{housex,jdbcType=VARCHAR},
+      exam = #{exam,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

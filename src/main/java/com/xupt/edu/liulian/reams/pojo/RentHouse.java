@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class RentHouse {
@@ -58,6 +60,8 @@ public class RentHouse {
     private String housey;
 
     private String housex;
+
+    private Integer exam;
 
     public Integer getId() {
         return id;
@@ -123,6 +127,7 @@ public class RentHouse {
         this.position = position == null ? null : position.trim();
     }
 
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getCon_time() {
         return con_time;
     }
@@ -281,5 +286,13 @@ public class RentHouse {
 
     public void setHousex(String housex) {
         this.housex = housex == null ? null : housex.trim();
+    }
+
+    public Integer getExam() {
+        return exam;
+    }
+
+    public void setExam(Integer exam) {
+        this.exam = exam;
     }
 }

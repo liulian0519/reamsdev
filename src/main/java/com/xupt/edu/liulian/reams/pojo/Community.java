@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Community {
@@ -23,7 +25,11 @@ public class Community {
 
     private String key_sale;
 
+    private Integer greenHouse_id;
+
     private String traffic;
+
+    private Integer rentHouse_id;
 
     public Integer getId() {
         return id;
@@ -57,9 +63,11 @@ public class Community {
         this.avg_price = avg_price == null ? null : avg_price.trim();
     }
 
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getBuild_time() {
         return build_time;
     }
+
 
     public void setBuild_time(Date build_time) {
         this.build_time = build_time;
@@ -72,6 +80,7 @@ public class Community {
     public void setBuild_type(String build_type) {
         this.build_type = build_type == null ? null : build_type.trim();
     }
+
 
     public Integer getBuild_num() {
         return build_num;
@@ -105,11 +114,27 @@ public class Community {
         this.key_sale = key_sale == null ? null : key_sale.trim();
     }
 
+    public Integer getGreenHouse_id() {
+        return greenHouse_id;
+    }
+
+    public void setGreenHouse_id(Integer greenHouse_id) {
+        this.greenHouse_id = greenHouse_id;
+    }
+
     public String getTraffic() {
         return traffic;
     }
 
     public void setTraffic(String traffic) {
         this.traffic = traffic == null ? null : traffic.trim();
+    }
+
+    public Integer getRentHouse_id() {
+        return rentHouse_id;
+    }
+
+    public void setRentHouse_id(Integer rentHouse_id) {
+        this.rentHouse_id = rentHouse_id;
     }
 }

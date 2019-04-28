@@ -21,7 +21,7 @@ public class AgentController {
         System.out.println("hellonjdshcbvdfjgvu");
         return "Hello World";
     }
-    @RequestMapping(value = "agentList",method = RequestMethod.GET)
+    @RequestMapping(value = "",method = RequestMethod.GET)
     @ResponseBody
     public List<Agent> list() throws Exception{
         List<Agent> agent = agentService.list();

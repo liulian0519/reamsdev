@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.controller;
 
+import com.xupt.edu.liulian.reams.dto.Green;
 import com.xupt.edu.liulian.reams.dto.House;
 import com.xupt.edu.liulian.reams.pojo.GreenHouse;
 import com.xupt.edu.liulian.reams.service.GreenHouseService;
@@ -21,4 +22,13 @@ public class GreenHouseController {
         House list = greenHouseService.list();
         return list;
     }
+
+    @RequestMapping(value = "greenHouseById",method = RequestMethod.POST)
+    @ResponseBody
+    public Green selectByID(Integer green_id){
+        Green green = greenHouseService.selectByID(green_id);
+        return green;
+    }
+
 }
+

@@ -1471,6 +1471,66 @@ public class GreenHouseExample {
             addCriterion("housex not between", value1, value2, "housex");
             return (Criteria) this;
         }
+
+        public Criteria andExamIsNull() {
+            addCriterion("exam is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamIsNotNull() {
+            addCriterion("exam is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamEqualTo(Integer value) {
+            addCriterion("exam =", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamNotEqualTo(Integer value) {
+            addCriterion("exam <>", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamGreaterThan(Integer value) {
+            addCriterion("exam >", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamGreaterThanOrEqualTo(Integer value) {
+            addCriterion("exam >=", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamLessThan(Integer value) {
+            addCriterion("exam <", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamLessThanOrEqualTo(Integer value) {
+            addCriterion("exam <=", value, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamIn(List<Integer> values) {
+            addCriterion("exam in", values, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamNotIn(List<Integer> values) {
+            addCriterion("exam not in", values, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamBetween(Integer value1, Integer value2) {
+            addCriterion("exam between", value1, value2, "exam");
+            return (Criteria) this;
+        }
+
+        public Criteria andExamNotBetween(Integer value1, Integer value2) {
+            addCriterion("exam not between", value1, value2, "exam");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

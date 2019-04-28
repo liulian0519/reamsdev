@@ -802,6 +802,66 @@ public class CommunityExample {
             return (Criteria) this;
         }
 
+        public Criteria andGreenHouse_idIsNull() {
+            addCriterion("greenHouse_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idIsNotNull() {
+            addCriterion("greenHouse_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idEqualTo(Integer value) {
+            addCriterion("greenHouse_id =", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idNotEqualTo(Integer value) {
+            addCriterion("greenHouse_id <>", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idGreaterThan(Integer value) {
+            addCriterion("greenHouse_id >", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("greenHouse_id >=", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idLessThan(Integer value) {
+            addCriterion("greenHouse_id <", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idLessThanOrEqualTo(Integer value) {
+            addCriterion("greenHouse_id <=", value, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idIn(List<Integer> values) {
+            addCriterion("greenHouse_id in", values, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idNotIn(List<Integer> values) {
+            addCriterion("greenHouse_id not in", values, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idBetween(Integer value1, Integer value2) {
+            addCriterion("greenHouse_id between", value1, value2, "greenHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andGreenHouse_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("greenHouse_id not between", value1, value2, "greenHouse_id");
+            return (Criteria) this;
+        }
+
         public Criteria andTrafficIsNull() {
             addCriterion("traffic is null");
             return (Criteria) this;
@@ -869,6 +929,66 @@ public class CommunityExample {
 
         public Criteria andTrafficNotBetween(String value1, String value2) {
             addCriterion("traffic not between", value1, value2, "traffic");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idIsNull() {
+            addCriterion("rentHouse_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idIsNotNull() {
+            addCriterion("rentHouse_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idEqualTo(Integer value) {
+            addCriterion("rentHouse_id =", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idNotEqualTo(Integer value) {
+            addCriterion("rentHouse_id <>", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idGreaterThan(Integer value) {
+            addCriterion("rentHouse_id >", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("rentHouse_id >=", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idLessThan(Integer value) {
+            addCriterion("rentHouse_id <", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idLessThanOrEqualTo(Integer value) {
+            addCriterion("rentHouse_id <=", value, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idIn(List<Integer> values) {
+            addCriterion("rentHouse_id in", values, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idNotIn(List<Integer> values) {
+            addCriterion("rentHouse_id not in", values, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idBetween(Integer value1, Integer value2) {
+            addCriterion("rentHouse_id between", value1, value2, "rentHouse_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andRentHouse_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("rentHouse_id not between", value1, value2, "rentHouse_id");
             return (Criteria) this;
         }
     }

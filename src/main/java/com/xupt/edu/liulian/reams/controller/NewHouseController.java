@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.controller;
 
+import com.xupt.edu.liulian.reams.dto.New;
 import com.xupt.edu.liulian.reams.pojo.NewHouse;
 import com.xupt.edu.liulian.reams.service.NewHouseService;
 import jdk.nashorn.internal.runtime.ECMAException;
@@ -21,5 +22,12 @@ public class NewHouseController {
     public List<NewHouse> list() throws Exception{
         List<NewHouse> newHouse = newHouseService.list();
         return newHouse;
+    }
+
+    @RequestMapping(value = "newHouseById",method = RequestMethod.POST)
+    @ResponseBody
+    public New selectByKey(Integer new_id){
+        New newtest = newHouseService.selectByID(new_id);
+        return newtest;
     }
 }

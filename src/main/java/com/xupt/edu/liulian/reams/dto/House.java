@@ -7,36 +7,41 @@ import com.xupt.edu.liulian.reams.pojo.RentHouse;
 import java.util.List;
 
 public class House {
-    private List<GreenHouse>  greenHouses;
-    private List<NewHouse> newHouses;
-    private List<RentHouse> rentHouses;
+    private List<test>  greenHouses;
+//    private List<test> tests;
+    private List<NewHouseTest> newHouses;
+    private List<RentHouseTest> rentHouses;
 
-    public void setHouse(List<GreenHouse>  greenHouses, List<NewHouse> newHouses,List<RentHouse> rentHouses){
+    public void setHouse(List<test>  greenHouses, List<NewHouseTest> newHouses,List<RentHouseTest> rentHouses){
         this.setGreenHouses(greenHouses);
+
         this.setNewHouses(newHouses);
         this.setRentHouses(rentHouses);
     }
-    public List<GreenHouse> getGreenHouses() {
+    public List<test> getGreenHouses() {
         return greenHouses;
     }
+//    public List<test> tests(){
+//        return tests;
+//    }
 
-    public void setGreenHouses(List<GreenHouse> greenHouses) {
+    public void setGreenHouses(List<test> greenHouses) {
         this.greenHouses = greenHouses;
     }
 
-    public List<NewHouse> getNewHouses() {
+    public List<NewHouseTest> getNewHouses() {
         return newHouses;
     }
 
-    public void setNewHouses(List<NewHouse> newHouses) {
+    public void setNewHouses(List<NewHouseTest> newHouses) {
         this.newHouses = newHouses;
     }
 
-    public List<RentHouse> getRentHouses() {
+    public List<RentHouseTest> getRentHouses() {
         return rentHouses;
     }
 
-    public void setRentHouses(List<RentHouse> rentHouses) {
+    public void setRentHouses(List<RentHouseTest> rentHouses) {
         this.rentHouses = rentHouses;
     }
 

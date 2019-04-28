@@ -11,6 +11,8 @@ public class Agent {
 
     private String image;
 
+    private Integer type;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Agent {
 
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }
