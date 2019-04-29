@@ -9,5 +9,7 @@ import java.util.List;
 public interface GreenHouseService {
     House list();
     Green selectByID(Integer id);
+    void add(GreenHouse greenHouse);
+
 
 }

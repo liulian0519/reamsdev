@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PicService {
     List<Pic> list();
+    void add(Pic pic);
+
 }

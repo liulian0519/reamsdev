@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface RentHouseService {
     List<RentHouse> list();
+    List<RentHouse> listByPage();
     Rent selectByID(Integer id);
     Rent listByName(String name);
     Rent sortByTime();
     Rent sortByPrice();
     Rent sortByArea();
+    Rent sortByID();
 
 
 }

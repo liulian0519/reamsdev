@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GreenHouse {
@@ -29,6 +31,7 @@ public class GreenHouse {
 
     private String right_age;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date con_time;
 
     private Integer mortgage;

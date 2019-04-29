@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.dto;
 
+import com.xupt.edu.liulian.reams.pojo.Agent;
+import com.xupt.edu.liulian.reams.pojo.Community;
 import com.xupt.edu.liulian.reams.pojo.Pic;
 import com.xupt.edu.liulian.reams.pojo.RentHouse;
 
@@ -10,6 +12,24 @@ public class Rent {
     private RentHouse rentHouse;
     private List<RentHouse> rentHouses;
     private List<RentHouseTest> rentHouseTests;
+    private List<Agent> agents;
+    private List<Community> communities;
+
+    public List<Agent> getAgents() {
+        return agents;
+    }
+
+    public void setAgents(List<Agent> agents) {
+        this.agents = agents;
+    }
+
+    public List<Community> getCommunities() {
+        return communities;
+    }
+
+    public void setCommunities(List<Community> communities) {
+        this.communities = communities;
+    }
 
     public List<RentHouseTest> getRentHouseTests() {
         return rentHouseTests;
@@ -68,6 +88,13 @@ public class Rent {
     public void setTest(List<RentHouseTest> rentHouseTests,int count){
         this.setRentHouseTests(rentHouseTests);
         this.setCount(count);
+    }
+    public void setRent(List<PicTest> picTests,RentHouse rentHouses,List<Community> communities,List<Agent> agents){
+        this.setPicList(picTests);
+        this.setRentHouse(rentHouses);
+        this.setCommunities(communities);
+        this.setAgents(agents);
+
     }
 
     //    public void setRent(List<Pic> picList, Rent rent){

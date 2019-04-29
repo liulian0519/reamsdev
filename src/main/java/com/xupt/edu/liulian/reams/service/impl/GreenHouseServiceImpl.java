@@ -24,6 +24,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     CommunityMapper communityMapper;
     @Autowired
     AgentMapper agentMapper;
+
     @Override
     public House list(){
         GreenHouseExample greenHouseExample = new GreenHouseExample();
@@ -106,12 +107,14 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         house.setHouse(tests,newHouseTests,rentHouseTests);
         return house;
     }
+
     @Override
     public Green selectByID(Integer green_id){
         GreenHouse greenHouse = greenHouseMapper.selectByPrimaryKey(green_id);
 
+
         CommunityExample communityExample = new CommunityExample();
-        communityExample.createCriteria().andGreenHouse_idEqualTo(green_id);
+        communityExample.createCriteria().andIdEqualTo(greenHouse.getCommunity_id());
         List<Community> communities = communityMapper.selectByExample(communityExample);
 
 
@@ -136,12 +139,17 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         List<Agent> agents = agentMapper.selectByExample(agentExample);
 
 
-
-
         Green green = new Green();
         green.setGreen(communities,greenHouse,picTests,agents);
         return green;
 
     }
+
+    @Override
+    public void add(GreenHouse greenHouse){
+        greenHouseMapper.insert(greenHouse);
+    }
+
+
 
 }

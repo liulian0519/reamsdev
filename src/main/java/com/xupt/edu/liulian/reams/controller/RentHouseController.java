@@ -1,20 +1,20 @@
 package com.xupt.edu.liulian.reams.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xupt.edu.liulian.reams.dto.Rent;
 import com.xupt.edu.liulian.reams.dto.RentHouseTest;
 import com.xupt.edu.liulian.reams.mapper.RentHouseMapper;
 import com.xupt.edu.liulian.reams.pojo.RentHouse;
 import com.xupt.edu.liulian.reams.pojo.RentHouseExample;
 import com.xupt.edu.liulian.reams.service.RentHouseService;
+import com.xupt.edu.liulian.reams.util.Page;
 import com.xupt.edu.liulian.reams.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -60,6 +60,32 @@ public class RentHouseController{
         return rentHouseTest;
     }
 
+    @RequestMapping(value = "rentHouseSortByArea",method = RequestMethod.GET)
+    @ResponseBody
+    public Rent sortByArea(){
+
+        Rent rent = rentHouseService.sortByArea();
+        return rent;
+    }
+
+    @RequestMapping(value = "rentHouseSortByID",method = RequestMethod.GET)
+    @ResponseBody
+    public Rent sortByID(){
+
+        Rent rent = rentHouseService.sortByID();
+        return rent;
+    }
+    @RequestMapping(value = "rentHouseByPage",method = RequestMethod.POST)
+    @ResponseBody
+    public List<RentHouse> list(Page page, @RequestParam("start") int start, @RequestParam("count") int count){
+        page.setStart(start);
+        page.setCount(count);
+        PageHelper.offsetPage(start,count);
+        List<RentHouse> cs = rentHouseService.listByPage();
+        int total = (int) new PageInfo<>(cs).getTotal();
+        page.setTotal(total);
+        return cs;
+    }
 
 
 }

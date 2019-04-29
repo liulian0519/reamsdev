@@ -3,12 +3,11 @@ package com.xupt.edu.liulian.reams.service.impl;
 import com.xupt.edu.liulian.reams.dto.PicTest;
 import com.xupt.edu.liulian.reams.dto.Rent;
 import com.xupt.edu.liulian.reams.dto.RentHouseTest;
+import com.xupt.edu.liulian.reams.mapper.AgentMapper;
+import com.xupt.edu.liulian.reams.mapper.CommunityMapper;
 import com.xupt.edu.liulian.reams.mapper.PicMapper;
 import com.xupt.edu.liulian.reams.mapper.RentHouseMapper;
-import com.xupt.edu.liulian.reams.pojo.Pic;
-import com.xupt.edu.liulian.reams.pojo.PicExample;
-import com.xupt.edu.liulian.reams.pojo.RentHouse;
-import com.xupt.edu.liulian.reams.pojo.RentHouseExample;
+import com.xupt.edu.liulian.reams.pojo.*;
 import com.xupt.edu.liulian.reams.service.RentHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +22,10 @@ public class RentHouseServiceImpl implements RentHouseService {
     RentHouseMapper rentHouseMapper;
     @Autowired
     PicMapper picMapper;
+    @Autowired
+    CommunityMapper communityMapper;
+    @Autowired
+    AgentMapper agentMapper;
 
     @Override
     public List<RentHouse> list() {
@@ -33,8 +36,11 @@ public class RentHouseServiceImpl implements RentHouseService {
 
     @Override
     public Rent selectByID(Integer rent_id) {
-
         RentHouse rentHouse = rentHouseMapper.selectByPrimaryKey(rent_id);
+
+        CommunityExample communityExample = new CommunityExample();
+        communityExample.createCriteria().andIdEqualTo(rentHouse.getCommunity_id());
+        List<Community> communities = communityMapper.selectByExample(communityExample);
 
         PicExample picExample = new PicExample();
         picExample.setOrderByClause("id asc");
@@ -45,18 +51,21 @@ public class RentHouseServiceImpl implements RentHouseService {
         List<String> urls = new ArrayList<>();
 
         for (Pic pic : pics) {
-
             if (pic.getRenthouse_id() == rent_id) {
                 urls.add(pic.getImgurl());
             }
             picTest.setUrl(urls);
             picTest.setId(rent_id);
-
         }
         picTests.add(picTest);
 
+        AgentExample agentExample = new AgentExample();
+        agentExample.createCriteria().andTypeEqualTo(1);
+        List<Agent> agents = agentMapper.selectByExample(agentExample);
+
+
         Rent rent = new Rent();
-        rent.setRent(picTests, rentHouse);
+        rent.setRent(picTests, rentHouse,communities,agents);
         return rent;
     }
 
@@ -179,8 +188,83 @@ public class RentHouseServiceImpl implements RentHouseService {
         List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
         PicExample picExample =  new PicExample();
+        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+        for (RentHouse rentHouse : rentHouses) {
+            RentHouseTest rentHouseTest = new RentHouseTest();
+            rentHouseTest.setId(rentHouse.getId());
+            rentHouseTest.setName(rentHouse.getName());
+            rentHouseTest.setAddress(rentHouse.getAddress());
+            rentHouseTest.setPosition(rentHouse.getPosition());
+            rentHouseTest.setRent_type(rentHouse.getRent_type());
+            rentHouseTest.setType(rentHouse.getArea_type());
+            rentHouseTest.setArea(rentHouse.getArea());
+            rentHouseTest.setPrice(rentHouse.getPrice());
+            rentHouseTest.setArea_type(rentHouse.getArea_type());
+            rentHouseTest.setCon_time(rentHouse.getCon_time());
+            rentHouseTest.setHeating(rentHouse.getHeating());
+            rentHouseTest.setWifi(rentHouse.getWifi());
+
+            picExample.createCriteria().andRenthouse_idEqualTo(rentHouse.getId());
+            List<Pic> pics = picMapper.selectByExample(picExample);
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                urls.add(pic.getImgurl());
+            }
+            rentHouseTest.setUrl(urls);
+            rentHouseTests.add(rentHouseTest);
+        }
+
+        Rent rent = new Rent();
+        rent.setTest(rentHouseTests,rentHouseTests.size());
+        return rent;
 
     }
+
+    @Override
+    public Rent sortByID(){
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        rentHouseExample.setOrderByClause("id asc");
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
+
+        PicExample picExample =  new PicExample();
+        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+        for (RentHouse rentHouse : rentHouses) {
+            RentHouseTest rentHouseTest = new RentHouseTest();
+            rentHouseTest.setId(rentHouse.getId());
+            rentHouseTest.setName(rentHouse.getName());
+            rentHouseTest.setAddress(rentHouse.getAddress());
+            rentHouseTest.setPosition(rentHouse.getPosition());
+            rentHouseTest.setRent_type(rentHouse.getRent_type());
+            rentHouseTest.setType(rentHouse.getArea_type());
+            rentHouseTest.setArea(rentHouse.getArea());
+            rentHouseTest.setPrice(rentHouse.getPrice());
+            rentHouseTest.setArea_type(rentHouse.getArea_type());
+            rentHouseTest.setCon_time(rentHouse.getCon_time());
+            rentHouseTest.setHeating(rentHouse.getHeating());
+            rentHouseTest.setWifi(rentHouse.getWifi());
+
+            picExample.createCriteria().andRenthouse_idEqualTo(rentHouse.getId());
+            List<Pic> pics = picMapper.selectByExample(picExample);
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                urls.add(pic.getImgurl());
+            }
+            rentHouseTest.setUrl(urls);
+            rentHouseTests.add(rentHouseTest);
+        }
+
+        Rent rent = new Rent();
+        rent.setTest(rentHouseTests,rentHouseTests.size());
+        return rent;
+
+    }
+
+    @Override
+    public List<RentHouse> listByPage(){
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        return rentHouseMapper.selectByExample(rentHouseExample);
+    }
+
 }
 
 

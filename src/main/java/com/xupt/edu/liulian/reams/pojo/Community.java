@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Community {
@@ -11,6 +13,7 @@ public class Community {
 
     private String avg_price;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date build_time;
 
     private String build_type;
