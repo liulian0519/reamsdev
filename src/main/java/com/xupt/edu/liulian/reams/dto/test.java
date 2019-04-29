@@ -19,8 +19,8 @@ public class test {
     private String name;
     private String address;
     private String type;
-    private String area;
-    private String price;
+    private Integer area;
+    private Integer price;
 
 //    public List getUrl() {
 //        return url;
@@ -42,13 +42,7 @@ public class test {
         this.type = type;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
 
 
@@ -64,12 +58,20 @@ public class test {
         return type;
     }
 
-    public String getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public String getPrice() {
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public Integer getPrice() {
         return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public Integer getId() {

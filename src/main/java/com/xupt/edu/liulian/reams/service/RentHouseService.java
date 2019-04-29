@@ -13,5 +13,7 @@ public interface RentHouseService {
     Rent listByName(String name);
     Rent sortByTime();
     Rent sortByPrice();
+    Rent sortByArea();
+
 
 }

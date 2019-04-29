@@ -1,7 +1,5 @@
 package com.xupt.edu.liulian.reams.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class RentHouse {
@@ -13,9 +11,9 @@ public class RentHouse {
 
     private String area_type;
 
-    private String area;
+    private Integer area;
 
-    private String price;
+    private Integer price;
 
     private Byte rent_type;
 
@@ -95,20 +93,20 @@ public class RentHouse {
         this.area_type = area_type == null ? null : area_type.trim();
     }
 
-    public String getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+    public void setArea(Integer area) {
+        this.area = area;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public Byte getRent_type() {
@@ -127,7 +125,6 @@ public class RentHouse {
         this.position = position == null ? null : position.trim();
     }
 
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getCon_time() {
         return con_time;
     }

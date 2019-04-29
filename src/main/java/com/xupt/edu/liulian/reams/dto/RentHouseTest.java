@@ -32,8 +32,8 @@ public class RentHouseTest {
     private String position;
     private Byte rent_type;
     private String type;
-    private String area;
-    private String price;
+    private Integer area;
+    private Integer price;
     private String area_type;
     private Date con_time;
     private Byte heating;
@@ -114,19 +114,19 @@ public class RentHouseTest {
         this.type = type;
     }
 
-    public String getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

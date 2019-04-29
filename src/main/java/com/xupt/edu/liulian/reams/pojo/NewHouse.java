@@ -7,7 +7,7 @@ public class NewHouse {
 
     private String address;
 
-    private String price;
+    private Integer price;
 
     private Integer status;
 
@@ -53,12 +53,12 @@ public class NewHouse {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price == null ? null : price.trim();
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public Integer getStatus() {

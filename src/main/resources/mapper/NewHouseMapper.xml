@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="price" jdbcType="INTEGER" property="price" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="water" jdbcType="VARCHAR" property="water" />
@@ -81,7 +81,7 @@
       fee, heating, electric, 
       housetype_id, building_id, housex, 
       housey)
-    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{water,jdbcType=VARCHAR}, 
       #{fee,jdbcType=VARCHAR}, #{heating,jdbcType=VARCHAR}, #{electric,jdbcType=VARCHAR}, 
       #{housetype_id,jdbcType=INTEGER}, #{building_id,jdbcType=INTEGER}, #{housex,jdbcType=VARCHAR}, 
@@ -138,7 +138,7 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=VARCHAR},
+        #{price,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -182,7 +182,7 @@
         address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=VARCHAR},
+        price = #{price,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
     update newhouse
     set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       type = #{type,jdbcType=VARCHAR},
       water = #{water,jdbcType=VARCHAR},

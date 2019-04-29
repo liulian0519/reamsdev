@@ -1,7 +1,5 @@
 package com.xupt.edu.liulian.reams.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class PreOrder {
@@ -43,7 +41,6 @@ public class PreOrder {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getOrder_time() {
         return order_time;
     }

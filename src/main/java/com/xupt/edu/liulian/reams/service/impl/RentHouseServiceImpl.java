@@ -140,12 +140,7 @@ public class RentHouseServiceImpl implements RentHouseService {
         rentHouseExample.setOrderByClause("price asc");
         List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
-//        RentHouseExample rentHouseExample = new RentHouseExample();
-//        rentHouseExample.setOrderByClause("price desc");
-//        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
-
         PicExample picExample = new PicExample();
-//        List<Pic> pics = picMapper.selectByExample(picExample);
 
         List<RentHouseTest> rentHouseTests = new ArrayList<>();
         for (RentHouse rentHouse : rentHouses) {
@@ -162,14 +157,7 @@ public class RentHouseServiceImpl implements RentHouseService {
             rentHouseTest.setCon_time(rentHouse.getCon_time());
             rentHouseTest.setHeating(rentHouse.getHeating());
             rentHouseTest.setWifi(rentHouse.getWifi());
-//            List<String> urls = new ArrayList<>();
-////            for(Pic pic:pics){
-////                if(pic.getRenthouse_id()== rentHouse.getId()){
-////                    urls.add(pic.getImgurl());
-////                }
-////                rentHouseTest.setUrl(urls);
-////            }
-//            rentHouseTests.add(rentHouseTest);
+
             picExample.createCriteria().andRenthouse_idEqualTo(rentHouse.getId());
             List<Pic> pics = picMapper.selectByExample(picExample);
             List<String> urls = new ArrayList<>();
@@ -184,5 +172,15 @@ public class RentHouseServiceImpl implements RentHouseService {
         return rent;
     }
 
+    @Override
+    public Rent sortByArea(){
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        rentHouseExample.setOrderByClause("area asc");
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
+        PicExample picExample =  new PicExample();
+
+    }
 }
+
+

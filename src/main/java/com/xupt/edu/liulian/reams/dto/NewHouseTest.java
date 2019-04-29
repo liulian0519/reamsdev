@@ -6,7 +6,7 @@ public class NewHouseTest {
     private Integer id;
     private List<String> url;
     private String name;
-    private String price;
+    private Integer price;
 
     public Integer getId() {
         return id;
@@ -20,9 +20,7 @@ public class NewHouseTest {
         return name;
     }
 
-    public String getPrice() {
-        return price;
-    }
+
 
     public void setId(Integer id) {
         this.id = id;
@@ -36,7 +34,11 @@ public class NewHouseTest {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }
