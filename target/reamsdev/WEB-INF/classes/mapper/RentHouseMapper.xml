@@ -6,8 +6,8 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="area_type" jdbcType="VARCHAR" property="area_type" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
-    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="area" jdbcType="INTEGER" property="area" />
+    <result column="price" jdbcType="INTEGER" property="price" />
     <result column="rent_type" jdbcType="TINYINT" property="rent_type" />
     <result column="position" jdbcType="VARCHAR" property="position" />
     <result column="con_time" jdbcType="DATE" property="con_time" />
@@ -103,7 +103,7 @@
       housey, housex, exam
       )
     values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{rent_type,jdbcType=TINYINT}, 
+      #{area,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{rent_type,jdbcType=TINYINT}, 
       #{position,jdbcType=VARCHAR}, #{con_time,jdbcType=DATE}, #{rent_time,jdbcType=VARCHAR}, 
       #{floor,jdbcType=VARCHAR}, #{eletric,jdbcType=VARCHAR}, #{elevator,jdbcType=TINYINT}, 
       #{water,jdbcType=VARCHAR}, #{fire,jdbcType=TINYINT}, #{tv,jdbcType=TINYINT}, #{fridge,jdbcType=TINYINT}, 
@@ -212,10 +212,10 @@
         #{area_type,jdbcType=VARCHAR},
       </if>
       <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+        #{area,jdbcType=INTEGER},
       </if>
       <if test="price != null">
-        #{price,jdbcType=VARCHAR},
+        #{price,jdbcType=INTEGER},
       </if>
       <if test="rent_type != null">
         #{rent_type,jdbcType=TINYINT},
@@ -301,10 +301,10 @@
         area_type = #{area_type,jdbcType=VARCHAR},
       </if>
       <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+        area = #{area,jdbcType=INTEGER},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=VARCHAR},
+        price = #{price,jdbcType=INTEGER},
       </if>
       <if test="rent_type != null">
         rent_type = #{rent_type,jdbcType=TINYINT},
@@ -383,8 +383,8 @@
     set name = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       area_type = #{area_type,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR},
+      area = #{area,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
       rent_type = #{rent_type,jdbcType=TINYINT},
       position = #{position,jdbcType=VARCHAR},
       con_time = #{con_time,jdbcType=DATE},

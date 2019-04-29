@@ -3,9 +3,9 @@
 <mapper namespace="com.xupt.edu.liulian.reams.mapper.GreenHouseMapper">
   <resultMap id="BaseResultMap" type="com.xupt.edu.liulian.reams.pojo.GreenHouse">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="area" jdbcType="INTEGER" property="area" />
     <result column="area_type" jdbcType="VARCHAR" property="area_type" />
-    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="price" jdbcType="INTEGER" property="price" />
     <result column="floor" jdbcType="VARCHAR" property="floor" />
     <result column="build_type" jdbcType="VARCHAR" property="build_type" />
     <result column="position" jdbcType="VARCHAR" property="position" />
@@ -91,7 +91,7 @@
       con_time, mortgage, name, 
       address, community_id, housey, 
       housex, exam)
-    values (#{area,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+    values (#{area,jdbcType=INTEGER}, #{area_type,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{floor,jdbcType=VARCHAR}, #{build_type,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
       #{decoration,jdbcType=VARCHAR}, #{ladder_house,jdbcType=VARCHAR}, #{heating,jdbcType=INTEGER}, 
       #{elevator,jdbcType=INTEGER}, #{build_use,jdbcType=VARCHAR}, #{right_age,jdbcType=VARCHAR}, 
@@ -165,13 +165,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="area != null">
-        #{area,jdbcType=VARCHAR},
+        #{area,jdbcType=INTEGER},
       </if>
       <if test="area_type != null">
         #{area_type,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=VARCHAR},
+        #{price,jdbcType=INTEGER},
       </if>
       <if test="floor != null">
         #{floor,jdbcType=VARCHAR},
@@ -230,13 +230,13 @@
     update greenhouse
     <set>
       <if test="area != null">
-        area = #{area,jdbcType=VARCHAR},
+        area = #{area,jdbcType=INTEGER},
       </if>
       <if test="area_type != null">
         area_type = #{area_type,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=VARCHAR},
+        price = #{price,jdbcType=INTEGER},
       </if>
       <if test="floor != null">
         floor = #{floor,jdbcType=VARCHAR},
@@ -294,9 +294,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse">
     update greenhouse
-    set area = #{area,jdbcType=VARCHAR},
+    set area = #{area,jdbcType=INTEGER},
       area_type = #{area_type,jdbcType=VARCHAR},
-      price = #{price,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
       floor = #{floor,jdbcType=VARCHAR},
       build_type = #{build_type,jdbcType=VARCHAR},
       position = #{position,jdbcType=VARCHAR},

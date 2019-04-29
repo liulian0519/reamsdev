@@ -8,24 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b85ea89b-8e71-4f8a-bbde-5d8fc849ab9b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/NewHouseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/NewHouseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/RentHouseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/RentHouseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/Community.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/Community.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/GreenHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/GreenHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/GreenHouseExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/GreenHouseExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/NewHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/NewHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/NewHouseExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/NewHouseExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/PreOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/PreOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/RentHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/RentHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/RentHouseExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/RentHouseExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/SaleOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/pojo/SaleOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/util/MybatisGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/util/MybatisGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/GreenHouseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GreenHouseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/NewHouseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/NewHouseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/RentHouseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/RentHouseMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+            <state relative-caret-position="206">
+              <caret line="180" column="50" lean-forward="true" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#listByName#0;class#RentHouseServiceImpl#0" />
@@ -58,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="304">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,8 +126,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/RentHouseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/dto/NewHouseTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -179,7 +161,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="20" />
     <option name="width" value="980" />
     <option name="height" value="1090" />
@@ -444,7 +426,7 @@
       <workItem from="1556411112639" duration="9369000" />
       <workItem from="1556439534005" duration="17007000" />
       <workItem from="1556459747840" duration="6576000" />
-      <workItem from="1556500775974" duration="1820000" />
+      <workItem from="1556500775974" duration="2090000" />
     </task>
     <task id="LOCAL-00001" summary="tijiao">
       <created>1556465698341</created>
@@ -460,17 +442,23 @@
       <option name="project" value="LOCAL" />
       <updated>1556465795046</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="bysort">
+      <created>1556503301996</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556503301996</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93249000" />
+    <option name="totallyTimeSpent" value="93519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49905837" visible="true" weight="0.22252011" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49905837" visible="true" weight="0.22252011" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -480,7 +468,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.15789473" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15789473" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -491,9 +479,9 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" visible="true" weight="0.32963988" />
       <window_info anchor="bottom" id="Application Servers" order="14" weight="0.2295989" />
-      <window_info anchor="bottom" id="Messages" order="15" weight="0.4833795" />
+      <window_info anchor="bottom" id="Messages" order="15" weight="0.041551247" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -545,7 +533,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="tijiao" />
-    <option name="LAST_COMMIT_MESSAGE" value="tijiao" />
+    <MESSAGE value="bysort" />
+    <option name="LAST_COMMIT_MESSAGE" value="bysort" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
@@ -1043,25 +1032,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/impl/RentHouseServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+        <state relative-caret-position="206">
+          <caret line="180" column="50" lean-forward="true" selection-start-line="180" selection-start-column="50" selection-end-line="180" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#listByName#0;class#RentHouseServiceImpl#0" />
             <element signature="method#sortByTime#0;class#RentHouseServiceImpl#0" />
             <element signature="e#5483#7004#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xupt/edu/liulian/reams/service/RentHouseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
