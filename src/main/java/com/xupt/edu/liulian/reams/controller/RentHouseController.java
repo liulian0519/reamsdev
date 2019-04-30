@@ -2,14 +2,13 @@ package com.xupt.edu.liulian.reams.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.xupt.edu.liulian.reams.dto.Rent;
 import com.xupt.edu.liulian.reams.dto.RentHouseTest;
 import com.xupt.edu.liulian.reams.mapper.RentHouseMapper;
 import com.xupt.edu.liulian.reams.pojo.RentHouse;
 import com.xupt.edu.liulian.reams.pojo.RentHouseExample;
 import com.xupt.edu.liulian.reams.service.RentHouseService;
-import com.xupt.edu.liulian.reams.util.Page;
+import com.xupt.edu.liulian.reams.util.PageInfo;
 import com.xupt.edu.liulian.reams.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,69 +21,79 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class RentHouseController{
+public class RentHouseController {
     @Autowired
     RentHouseService rentHouseService;
-    @RequestMapping(value = "rentHouseList",method = RequestMethod.GET)
+
+    @RequestMapping(value = "rentHouseList", method = RequestMethod.GET)
     @ResponseBody
-    public List<RentHouse> list() throws Exception{
+    public List<RentHouse> list() throws Exception {
         List<RentHouse> rentHouse = rentHouseService.list();
         return rentHouse;
     }
 
-    @RequestMapping(value = "rentHouseById",method = RequestMethod.POST)
+    @RequestMapping(value = "rentHouseById", method = RequestMethod.POST)
     @ResponseBody
-    public Rent selectByKey(Integer rent_id){
+    public Rent selectByKey(Integer rent_id) {
         Rent rent = rentHouseService.selectByID(rent_id);
         return rent;
     }
 
-    @RequestMapping(value = "rentHouseByName",method = RequestMethod.POST)
+    @RequestMapping(value = "rentHouseByName", method = RequestMethod.POST)
     @ResponseBody
-    public Rent list(@RequestParam("name")String name){
+    public Rent list(@RequestParam("name") String name) {
         Rent rent = rentHouseService.listByName(name);
         return rent;
     }
 
-    @RequestMapping(value = "rentHouseSortByConTime",method = RequestMethod.GET)
+    @RequestMapping(value = "rentHouseSortByConTime", method = RequestMethod.GET)
     @ResponseBody
-    public Rent sortByTime(){
+    public Rent sortByTime() {
         Rent rentHouseTest = rentHouseService.sortByTime();
         return rentHouseTest;
     }
 
-    @RequestMapping(value = "rentHouseSortByPrice",method = RequestMethod.GET)
+    @RequestMapping(value = "rentHouseSortByPrice", method = RequestMethod.GET)
     @ResponseBody
-    public Rent sortByPrice(){
+    public Rent sortByPrice() {
         Rent rentHouseTest = rentHouseService.sortByPrice();
         return rentHouseTest;
     }
 
-    @RequestMapping(value = "rentHouseSortByArea",method = RequestMethod.GET)
+    @RequestMapping(value = "rentHouseSortByArea", method = RequestMethod.GET)
     @ResponseBody
-    public Rent sortByArea(){
+    public Rent sortByArea() {
 
         Rent rent = rentHouseService.sortByArea();
         return rent;
     }
 
-    @RequestMapping(value = "rentHouseSortByID",method = RequestMethod.GET)
+    @RequestMapping(value = "rentHouseSortByID", method = RequestMethod.GET)
     @ResponseBody
-    public Rent sortByID(){
+    public Rent sortByID() {
 
         Rent rent = rentHouseService.sortByID();
         return rent;
     }
-    @RequestMapping(value = "rentHouseByPage",method = RequestMethod.POST)
+
+    @RequestMapping(value = "rentHouseByPage", method = RequestMethod.GET)
     @ResponseBody
-    public List<RentHouse> list(Page page, @RequestParam("start") int start, @RequestParam("count") int count){
-        page.setStart(start);
-        page.setCount(count);
-        PageHelper.offsetPage(start,count);
-        List<RentHouse> cs = rentHouseService.listByPage();
-        int total = (int) new PageInfo<>(cs).getTotal();
-        page.setTotal(total);
-        return cs;
+    public PageInfo<RentHouseTest> list(@RequestParam("pageNum") Integer pageNum) {
+        PageInfo<RentHouseTest> pageInfo = rentHouseService.listByPage(pageNum);
+        return pageInfo;
+    }
+
+    @RequestMapping(value = "renthouseBySql", method = RequestMethod.POST)
+    @ResponseBody
+    public Rent selectBySql(@RequestParam("address") String address,
+                            @RequestParam("rent_type") Byte rent_type,
+                            @RequestParam("price") String price,
+                            @RequestParam("area") String area_type,
+                            @RequestParam("position") String position) {
+        Rent rent = rentHouseService.selectBySql(address,rent_type,price,area_type,position);
+        return rent;
+
+
     }
 
 

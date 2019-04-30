@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.xupt.edu.liulian.reams.dto.PicTest;
 import com.xupt.edu.liulian.reams.dto.Rent;
 import com.xupt.edu.liulian.reams.dto.RentHouseTest;
@@ -9,6 +10,7 @@ import com.xupt.edu.liulian.reams.mapper.PicMapper;
 import com.xupt.edu.liulian.reams.mapper.RentHouseMapper;
 import com.xupt.edu.liulian.reams.pojo.*;
 import com.xupt.edu.liulian.reams.service.RentHouseService;
+import com.xupt.edu.liulian.reams.util.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,7 +67,7 @@ public class RentHouseServiceImpl implements RentHouseService {
 
 
         Rent rent = new Rent();
-        rent.setRent(picTests, rentHouse,communities,agents);
+        rent.setRent(picTests, rentHouse, communities, agents);
         return rent;
     }
 
@@ -112,7 +114,7 @@ public class RentHouseServiceImpl implements RentHouseService {
         List<Pic> pics = picMapper.selectByExample(picExample);
 
         List<RentHouseTest> rentHouseTests = new ArrayList<>();
-        for(RentHouse rentHouse:rentHouses){
+        for (RentHouse rentHouse : rentHouses) {
             RentHouseTest rentHouseTest = new RentHouseTest();
             rentHouseTest.setId(rentHouse.getId());
             rentHouseTest.setName(rentHouse.getName());
@@ -127,8 +129,8 @@ public class RentHouseServiceImpl implements RentHouseService {
             rentHouseTest.setHeating(rentHouse.getHeating());
             rentHouseTest.setWifi(rentHouse.getWifi());
             List<String> urls = new ArrayList<>();
-            for(Pic pic:pics){
-                if(pic.getRenthouse_id()== rentHouse.getId()){
+            for (Pic pic : pics) {
+                if (pic.getRenthouse_id() == rentHouse.getId()) {
                     urls.add(pic.getImgurl());
                 }
                 rentHouseTest.setUrl(urls);
@@ -137,7 +139,7 @@ public class RentHouseServiceImpl implements RentHouseService {
         }
 
         Rent rent = new Rent();
-        rent.setTest(rentHouseTests,rentHouseTests.size());
+        rent.setTest(rentHouseTests, rentHouseTests.size());
         return rent;
 
 
@@ -182,12 +184,12 @@ public class RentHouseServiceImpl implements RentHouseService {
     }
 
     @Override
-    public Rent sortByArea(){
+    public Rent sortByArea() {
         RentHouseExample rentHouseExample = new RentHouseExample();
         rentHouseExample.setOrderByClause("area asc");
         List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
-        PicExample picExample =  new PicExample();
+        PicExample picExample = new PicExample();
         List<RentHouseTest> rentHouseTests = new ArrayList<>();
         for (RentHouse rentHouse : rentHouses) {
             RentHouseTest rentHouseTest = new RentHouseTest();
@@ -215,18 +217,18 @@ public class RentHouseServiceImpl implements RentHouseService {
         }
 
         Rent rent = new Rent();
-        rent.setTest(rentHouseTests,rentHouseTests.size());
+        rent.setTest(rentHouseTests, rentHouseTests.size());
         return rent;
 
     }
 
     @Override
-    public Rent sortByID(){
+    public Rent sortByID() {
         RentHouseExample rentHouseExample = new RentHouseExample();
         rentHouseExample.setOrderByClause("id asc");
         List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
-        PicExample picExample =  new PicExample();
+        PicExample picExample = new PicExample();
         List<RentHouseTest> rentHouseTests = new ArrayList<>();
         for (RentHouse rentHouse : rentHouses) {
             RentHouseTest rentHouseTest = new RentHouseTest();
@@ -254,15 +256,116 @@ public class RentHouseServiceImpl implements RentHouseService {
         }
 
         Rent rent = new Rent();
-        rent.setTest(rentHouseTests,rentHouseTests.size());
+        rent.setTest(rentHouseTests, rentHouseTests.size());
         return rent;
 
     }
 
     @Override
-    public List<RentHouse> listByPage(){
+    public PageInfo<RentHouseTest> listByPage(Integer pageNum) {
+        PageHelper.startPage(pageNum, 3);
         RentHouseExample rentHouseExample = new RentHouseExample();
-        return rentHouseMapper.selectByExample(rentHouseExample);
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
+
+        PicExample picExample = new PicExample();
+        picExample.setOrderByClause("id asc");
+        List<Pic> pics = picMapper.selectByExample(picExample);
+
+        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+        for (RentHouse rentHouse : rentHouses) {
+            RentHouseTest rentHouseTest = new RentHouseTest();
+            rentHouseTest.setId(rentHouse.getId());
+            rentHouseTest.setName(rentHouse.getName());
+            rentHouseTest.setAddress(rentHouse.getAddress());
+            rentHouseTest.setPosition(rentHouse.getPosition());
+            rentHouseTest.setRent_type(rentHouse.getRent_type());
+            rentHouseTest.setType(rentHouse.getArea_type());
+            rentHouseTest.setArea(rentHouse.getArea());
+            rentHouseTest.setPrice(rentHouse.getPrice());
+            rentHouseTest.setArea_type(rentHouse.getArea_type());
+            rentHouseTest.setCon_time(rentHouse.getCon_time());
+            rentHouseTest.setHeating(rentHouse.getHeating());
+            rentHouseTest.setWifi(rentHouse.getWifi());
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                if (pic.getRenthouse_id() == rentHouse.getId()) {
+                    urls.add(pic.getImgurl());
+                }
+                rentHouseTest.setUrl(urls);
+            }
+            rentHouseTests.add(rentHouseTest);
+        }
+        PageInfo<RentHouseTest> pageInfo = new PageInfo<>(rentHouseTests);
+        return pageInfo;
+    }
+
+    @Override
+    public  Rent selectBySql(String address,Byte rent_type,String price,String area_type,String position){
+        Integer instart;
+        Integer inend;
+        if(price.length()>0){
+            System.out.println(price.length());
+            String str = price;
+            String[] strarray = str.split("-");
+            String start="";
+            String end="";
+            for(int i = 0;i<strarray.length;i++){
+
+                start = strarray[0];
+                end = strarray[1];
+
+            }
+            instart= Integer.valueOf(start);
+            inend = Integer.valueOf(end);
+        }else{
+             instart = 0;
+             inend = 1000000000;
+        }
+
+
+
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        if(rent_type == 2){
+            rentHouseExample.createCriteria().andAddressLike("%"+address+"%").andPriceBetween(instart,inend).andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%");
+        }else{
+            rentHouseExample.createCriteria().andAddressLike("%"+address+"%").andRent_typeEqualTo(rent_type).andPriceBetween(instart,inend).andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%");
+        }
+
+
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
+
+        PicExample picExample = new PicExample();
+        picExample.setOrderByClause("id asc");
+        List<Pic> pics = picMapper.selectByExample(picExample);
+
+        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+        for (RentHouse rentHouse : rentHouses) {
+            RentHouseTest rentHouseTest = new RentHouseTest();
+            rentHouseTest.setId(rentHouse.getId());
+            rentHouseTest.setName(rentHouse.getName());
+            rentHouseTest.setAddress(rentHouse.getAddress());
+            rentHouseTest.setPosition(rentHouse.getPosition());
+            rentHouseTest.setRent_type(rentHouse.getRent_type());
+            rentHouseTest.setType(rentHouse.getArea_type());
+            rentHouseTest.setArea(rentHouse.getArea());
+            rentHouseTest.setPrice(rentHouse.getPrice());
+            rentHouseTest.setArea_type(rentHouse.getArea_type());
+            rentHouseTest.setCon_time(rentHouse.getCon_time());
+            rentHouseTest.setHeating(rentHouse.getHeating());
+            rentHouseTest.setWifi(rentHouse.getWifi());
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                if (pic.getRenthouse_id() == rentHouse.getId()) {
+                    urls.add(pic.getImgurl());
+                }
+                rentHouseTest.setUrl(urls);
+            }
+            rentHouseTests.add(rentHouseTest);
+        }
+
+        Rent rent = new Rent();
+        rent.setTest(rentHouseTests, rentHouseTests.size());
+        return rent;
     }
 
 }

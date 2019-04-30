@@ -3,19 +3,29 @@ package com.xupt.edu.liulian.reams.service;
 import com.xupt.edu.liulian.reams.dto.Rent;
 import com.xupt.edu.liulian.reams.dto.RentHouseTest;
 import com.xupt.edu.liulian.reams.pojo.RentHouse;
+import com.xupt.edu.liulian.reams.util.PageInfo;
 
 import java.util.Date;
 import java.util.List;
 
 public interface RentHouseService {
     List<RentHouse> list();
-    List<RentHouse> listByPage();
+
+    PageInfo<RentHouseTest> listByPage(Integer pageNum);
+
     Rent selectByID(Integer id);
+
     Rent listByName(String name);
+
     Rent sortByTime();
+
     Rent sortByPrice();
+
     Rent sortByArea();
+
     Rent sortByID();
+
+    Rent selectBySql(String address,Byte rent_type,String price,String area_type,String position);
 
 
 }
