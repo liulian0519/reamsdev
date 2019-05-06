@@ -3,9 +3,7 @@ package com.xupt.edu.liulian.reams.service.impl;
 import com.xupt.edu.liulian.reams.dto.HouseTypeTest;
 import com.xupt.edu.liulian.reams.dto.New;
 import com.xupt.edu.liulian.reams.dto.PicTest;
-import com.xupt.edu.liulian.reams.mapper.HouseTypeMapper;
-import com.xupt.edu.liulian.reams.mapper.NewHouseMapper;
-import com.xupt.edu.liulian.reams.mapper.PicMapper;
+import com.xupt.edu.liulian.reams.mapper.*;
 import com.xupt.edu.liulian.reams.pojo.*;
 import com.xupt.edu.liulian.reams.service.NewHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,10 @@ public class NewHouseServiceImpl implements NewHouseService {
     PicMapper picMapper;
     @Autowired
     HouseTypeMapper houseTypeMapper;
+    @Autowired
+    BuildingMapper buildingMapper;
+    @Autowired
+    AgentMapper agentMapper;
     @Override
     public List<NewHouse> list(){
         NewHouseExample newHouseExample = new NewHouseExample();
@@ -36,7 +38,13 @@ public class NewHouseServiceImpl implements NewHouseService {
         houseTypeExample.setOrderByClause("id asc");
         List<HouseType> houseTypes = houseTypeMapper.selectByExample(houseTypeExample);
 
+        BuildingExample buildingExample = new BuildingExample();
+        buildingExample.createCriteria().andIdEqualTo(new_id);
+        List<Building> buildings = buildingMapper.selectByExample(buildingExample);
 
+        AgentExample agentExample = new AgentExample();
+        agentExample.createCriteria().andTypeEqualTo(1);
+        List<Agent> agents = agentMapper.selectByExample(agentExample);
 
         HouseTypeExample houseTypeExample1 = new HouseTypeExample();
         houseTypeExample1.createCriteria().andBuilding_idEqualTo(new_id);
@@ -75,7 +83,7 @@ public class NewHouseServiceImpl implements NewHouseService {
 
 
         New newtest = new New();
-        newtest.setNew(picTests,newHouse,houseTypeTests,houseTypeList);
+        newtest.setNew(picTests,newHouse,houseTypeTests,houseTypeList,buildings,agents);
         return newtest;
     }
 }

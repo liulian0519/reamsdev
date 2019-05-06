@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class RentHouse {
@@ -19,6 +21,7 @@ public class RentHouse {
 
     private String position;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date con_time;
 
     private String rent_time;

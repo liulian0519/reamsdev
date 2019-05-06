@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -152,6 +153,8 @@ public class GreenHouse {
         this.right_age = right_age == null ? null : right_age.trim();
     }
 
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getCon_time() {
         return con_time;
     }

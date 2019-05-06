@@ -83,6 +83,13 @@ public class RentHouseController {
         return pageInfo;
     }
 
+    @RequestMapping(value = "rentHouseByTime", method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<RentHouseTest> listone(@RequestParam("pageNum") Integer pageNum) {
+        PageInfo<RentHouseTest> pageInfo = rentHouseService.listByPageTime(pageNum);
+        return pageInfo;
+    }
+
     @RequestMapping(value = "renthouseBySql", method = RequestMethod.POST)
     @ResponseBody
     public Rent selectBySql(@RequestParam("address") String address,

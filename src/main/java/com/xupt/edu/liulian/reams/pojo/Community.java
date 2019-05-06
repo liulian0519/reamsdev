@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -64,6 +65,7 @@ public class Community {
         this.avg_price = avg_price == null ? null : avg_price.trim();
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getBuild_time() {
         return build_time;
     }

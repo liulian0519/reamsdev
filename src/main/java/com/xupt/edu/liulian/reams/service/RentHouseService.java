@@ -12,6 +12,7 @@ public interface RentHouseService {
     List<RentHouse> list();
 
     PageInfo<RentHouseTest> listByPage(Integer pageNum);
+    PageInfo<RentHouseTest> listByPageTime(Integer pagNum);
 
     Rent selectByID(Integer id);
 
