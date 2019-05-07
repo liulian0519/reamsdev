@@ -89,7 +89,18 @@ public class RentHouseController {
         PageInfo<RentHouseTest> pageInfo = rentHouseService.listByPageTime(pageNum);
         return pageInfo;
     }
-
+    @RequestMapping(value = "rentHouseByPrice", method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<RentHouseTest> listtwo(@RequestParam("pageNum") Integer pageNum) {
+        PageInfo<RentHouseTest> pageInfo = rentHouseService.listByPagePrice(pageNum);
+        return pageInfo;
+    }
+    @RequestMapping(value = "rentHouseByArea", method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<RentHouseTest> listThree(@RequestParam("pageNum") Integer pageNum) {
+        PageInfo<RentHouseTest> pageInfo = rentHouseService.listByPageArea(pageNum);
+        return pageInfo;
+    }
     @RequestMapping(value = "renthouseBySql", method = RequestMethod.POST)
     @ResponseBody
     public Rent selectBySql(@RequestParam("address") String address,

@@ -13,6 +13,8 @@ public interface RentHouseService {
 
     PageInfo<RentHouseTest> listByPage(Integer pageNum);
     PageInfo<RentHouseTest> listByPageTime(Integer pagNum);
+    PageInfo<RentHouseTest> listByPagePrice(Integer pagNum);
+    PageInfo<RentHouseTest> listByPageArea(Integer pagNum);
 
     Rent selectByID(Integer id);
 
