@@ -9,11 +9,30 @@ import java.util.List;
 public class Green {
     private List<Community> communityList;
     private GreenHouse greenHouse;
+    private List<GreenHouse> greenHouses;
     private  List<PicTest> picTests;
     private List<Agent> agents;
+    private List<GreenHouseTest> greenHouseTests;
+    private int count;
 
     public List<PicTest> getPicTests() {
         return picTests;
+    }
+
+    public List<GreenHouseTest> getGreenHouseTests() {
+        return greenHouseTests;
+    }
+
+    public void setGreenHouseTests(List<GreenHouseTest> greenHouseTests) {
+        this.greenHouseTests = greenHouseTests;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void setPicTests(List<PicTest> picTests) {
@@ -48,5 +67,22 @@ public class Green {
         this.setGreenHouse(greenHouse);
         this.setPicTests(picTests);
         this.setAgents(agents);
+    }
+
+    public List<GreenHouse> getGreenHouses() {
+        return greenHouses;
+    }
+
+    public void setGreenHouses(List<GreenHouse> greenHouses) {
+        this.greenHouses = greenHouses;
+    }
+
+    public void setGreen(List<GreenHouse> greenHouses, int count){
+        this.setGreenHouses(greenHouses);
+        this.setCount(count);
+    }
+    public void setTest(List<GreenHouseTest> greenHouseTests,int count){
+        this.setGreenHouseTests(greenHouseTests);
+        this.setCount(count);
     }
 }

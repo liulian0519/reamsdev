@@ -2,6 +2,7 @@ package com.xupt.edu.liulian.reams.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xupt.edu.liulian.reams.dto.Green;
+import com.xupt.edu.liulian.reams.dto.GreenHouseTest;
 import com.xupt.edu.liulian.reams.dto.House;
 import com.xupt.edu.liulian.reams.pojo.Community;
 import com.xupt.edu.liulian.reams.pojo.GreenHouse;
@@ -9,6 +10,7 @@ import com.xupt.edu.liulian.reams.pojo.Pic;
 import com.xupt.edu.liulian.reams.service.CommunityService;
 import com.xupt.edu.liulian.reams.service.GreenHouseService;
 import com.xupt.edu.liulian.reams.service.PicService;
+import com.xupt.edu.liulian.reams.util.PageInfo;
 import com.xupt.edu.liulian.reams.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +82,61 @@ public class GreenHouseController {
 
         return greenHouse;
     }
+
+    @RequestMapping(value = "greenhouseByPage",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<GreenHouseTest> list(@RequestParam("pageNum") Integer pageNum){
+        PageInfo<GreenHouseTest> pageInfo = greenHouseService.listByPage(pageNum);
+        return pageInfo;
+    }
+
+    @RequestMapping(value = "greenhouseByTime",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<GreenHouseTest> listTime(@RequestParam("pageNum") Integer pageNum){
+        PageInfo<GreenHouseTest> pageInfo = greenHouseService.listByTime(pageNum);
+        return pageInfo;
+    }
+    @RequestMapping(value = "greenhouseByPrice",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<GreenHouseTest> listPrice(@RequestParam("pageNum") Integer pageNum){
+        PageInfo<GreenHouseTest> pageInfo = greenHouseService.listByPrice(pageNum);
+        return pageInfo;
+    }
+    @RequestMapping(value = "greenhouseByArea",method = RequestMethod.GET)
+    @ResponseBody
+    public PageInfo<GreenHouseTest> listArea(@RequestParam("pageNum") Integer pageNum){
+        PageInfo<GreenHouseTest> pageInfo = greenHouseService.listByArea(pageNum);
+        return pageInfo;
+    }
+
+    @RequestMapping(value = "listCount",method = RequestMethod.GET)
+    @ResponseBody
+    public Green listcount(){
+        Green green = greenHouseService.listCount();
+        return green;
+    }
+
+    @RequestMapping(value = "greenhouseBySql",method = RequestMethod.POST)
+    @ResponseBody
+    public PageInfo<GreenHouseTest>selectBySql(
+                            @RequestParam("pageNum") Integer pageNum,
+                            @RequestParam("address") String address,
+                             @RequestParam("area_type") String area_type,
+                             @RequestParam("position") String position,
+                             @RequestParam("build_use") String build_use,
+                             @RequestParam("heating") Integer heating) {
+
+        PageInfo<GreenHouseTest> pageInfo = greenHouseService.selectBySql(pageNum,address,area_type,position,build_use,heating);
+        return pageInfo;
+
+    }
+    @RequestMapping(value = "slectByName",method = RequestMethod.POST)
+    @ResponseBody
+    public Green listByName(@RequestParam("name") String name){
+        Green green = greenHouseService.listByName(name);
+        return green;
+    }
+
 
 }
 
