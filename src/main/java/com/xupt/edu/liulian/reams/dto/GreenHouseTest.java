@@ -16,6 +16,16 @@ public class GreenHouseTest {
     private String build_use;
     private Integer price;
     private Integer exam;
+    private Date con_time;
+
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    public Date getCon_time() {
+        return con_time;
+    }
+
+    public void setCon_time(Date con_time) {
+        this.con_time = con_time;
+    }
 
     public Integer getExam() {
         return exam;

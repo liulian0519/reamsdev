@@ -174,6 +174,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTest.setArea(greenHouse.getArea());
             greenHouseTest.setPrice(greenHouse.getPrice());
             greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
             communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
             List<Community> communities = communityMapper.selectByExample(communityExample);
             for (Community community : communities) {
@@ -223,6 +224,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTest.setArea(greenHouse.getArea());
             greenHouseTest.setPrice(greenHouse.getPrice());
             greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
             communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
             List<Community> communities = communityMapper.selectByExample(communityExample);
             for (Community community : communities) {
@@ -272,6 +274,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTest.setArea(greenHouse.getArea());
             greenHouseTest.setPrice(greenHouse.getPrice());
             greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
             communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
             List<Community> communities = communityMapper.selectByExample(communityExample);
             for (Community community : communities) {
@@ -321,6 +324,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTest.setArea(greenHouse.getArea());
             greenHouseTest.setPrice(greenHouse.getPrice());
             greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
             communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
             List<Community> communities = communityMapper.selectByExample(communityExample);
             for (Community community : communities) {
@@ -406,11 +410,16 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         return pageInfo;
     }
 
-
     @Override
-    public Green listByName(String name){
+    public Green selectBySql(String address,String area_type,String position,String build_use,Integer heating){
         GreenHouseExample greenHouseExample = new GreenHouseExample();
-        greenHouseExample.createCriteria().andNameLike("%"+ name +"%");
+
+        if(heating == 2){
+            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%");
+        }else{
+            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%").andHeatingEqualTo(heating);
+        }
+
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -418,6 +427,8 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         List<Pic> pics = picMapper.selectByExample(picExample);
 
         CommunityExample communityExample = new CommunityExample();
+        communityExample.setOrderByClause("id asc");
+        List<Community> communities = communityMapper.selectByExample(communityExample);
 
         List<GreenHouseTest> greenHouseTests = new ArrayList<>();
         for (GreenHouse greenHouse : greenHouses) {
@@ -431,10 +442,60 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTest.setArea(greenHouse.getArea());
             greenHouseTest.setPrice(greenHouse.getPrice());
             greenHouseTest.setBuild_use(greenHouse.getBuild_use());
-            communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
-            List<Community> communities = communityMapper.selectByExample(communityExample);
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
             for (Community community : communities) {
-                greenHouseTest.setBuild_time(community.getBuild_time());
+                if(community.getGreenHouse_id() == greenHouse.getId()){
+                    greenHouseTest.setBuild_time(community.getBuild_time());
+                }
+            }
+
+
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                if (pic.getGreenhouse_id() == greenHouse.getId()) {
+                    urls.add(pic.getImgurl());
+                }
+                greenHouseTest.setUrl(urls);
+            }
+            greenHouseTests.add(greenHouseTest);
+        }
+        Green green = new Green();
+        green.setTest(greenHouseTests,greenHouseTests.size());
+        return green;
+    }
+
+    @Override
+    public Green listByName(String name){
+        GreenHouseExample greenHouseExample = new GreenHouseExample();
+
+        greenHouseExample.createCriteria().andExamNotEqualTo(0).andNameLike("%"+ name +"%");
+        List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
+
+        PicExample picExample = new PicExample();
+        picExample.setOrderByClause("id asc");
+        List<Pic> pics = picMapper.selectByExample(picExample);
+
+        CommunityExample communityExample = new CommunityExample();
+        List<Community> communities = communityMapper.selectByExample(communityExample);
+        List<GreenHouseTest> greenHouseTests = new ArrayList<>();
+        for (GreenHouse greenHouse : greenHouses) {
+            GreenHouseTest greenHouseTest = new GreenHouseTest();
+            greenHouseTest.setId(greenHouse.getId());
+            greenHouseTest.setName(greenHouse.getName());
+            greenHouseTest.setArea_type(greenHouse.getArea_type());
+            greenHouseTest.setPosition(greenHouse.getPosition());
+            greenHouseTest.setAddress(greenHouse.getAddress());
+            greenHouseTest.setFloor(greenHouse.getFloor());
+            greenHouseTest.setArea(greenHouse.getArea());
+            greenHouseTest.setPrice(greenHouse.getPrice());
+            greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
+            communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
+
+            for (Community community : communities) {
+                if(community.getGreenHouse_id() == greenHouse.getId()){
+                    greenHouseTest.setBuild_time(community.getBuild_time());
+                }
             }
 
             List<String> urls = new ArrayList<>();

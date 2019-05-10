@@ -130,6 +130,19 @@ public class GreenHouseController {
         return pageInfo;
 
     }
+    @RequestMapping(value = "greenhouseBysql",method = RequestMethod.POST)
+    @ResponseBody
+    public Green selectBysql(
+            @RequestParam("address") String address,
+            @RequestParam("area_type") String area_type,
+            @RequestParam("position") String position,
+            @RequestParam("build_use") String build_use,
+            @RequestParam("heating") Integer heating) {
+
+      Green green = greenHouseService.selectBySql(address,area_type,position,build_use,heating);
+      return green;
+
+    }
     @RequestMapping(value = "slectByName",method = RequestMethod.POST)
     @ResponseBody
     public Green listByName(@RequestParam("name") String name){
