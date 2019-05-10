@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.xupt.edu.liulian.reams.dto.*;
 import com.xupt.edu.liulian.reams.mapper.*;
@@ -150,7 +151,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
 
     @Override
     public PageInfo<GreenHouseTest> listByPage(Integer pageNum) {
-        PageHelper.startPage(pageNum, 2);
+        Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.createCriteria().andExamNotEqualTo(0);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
@@ -190,12 +191,15 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         }
 
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
 
     @Override
     public PageInfo<GreenHouseTest> listByTime(Integer pageNum){
-        PageHelper.startPage(pageNum, 2);
+        Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("con_time desc");
         greenHouseExample.createCriteria().andExamNotEqualTo(0);
@@ -236,12 +240,15 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         }
 
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
 
     @Override
     public PageInfo<GreenHouseTest> listByPrice(Integer pageNum){
-        PageHelper.startPage(pageNum, 2);
+        Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("price desc");
         greenHouseExample.createCriteria().andExamNotEqualTo(0);
@@ -282,12 +289,15 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         }
 
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
 
     @Override
     public PageInfo<GreenHouseTest> listByArea(Integer pageNum){
-        PageHelper.startPage(pageNum, 2);
+        Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("area asc");
         greenHouseExample.createCriteria().andExamNotEqualTo(0);
@@ -328,6 +338,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         }
 
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
     @Override
@@ -342,7 +355,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     }
     @Override
     public PageInfo<GreenHouseTest> selectBySql(Integer pageNum,String address,String area_type,String position,String build_use,Integer heating){
-        PageHelper.startPage(pageNum, 2);
+        Page p = PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
 
         if(heating == 2){
@@ -387,6 +400,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             greenHouseTests.add(greenHouseTest);
         }
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
 

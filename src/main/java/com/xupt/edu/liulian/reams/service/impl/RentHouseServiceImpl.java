@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.service.impl;
 
+
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.xupt.edu.liulian.reams.dto.PicTest;
 import com.xupt.edu.liulian.reams.dto.Rent;
@@ -274,14 +276,13 @@ public class RentHouseServiceImpl implements RentHouseService {
 
     @Override
     public PageInfo<RentHouseTest> listByPage(Integer pageNum) {
-        PageHelper.startPage(pageNum, 2);
-        RentHouseExample rentHouseExample = new RentHouseExample();
-        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
 
+        Page p = PageHelper.startPage(pageNum, 1);
         PicExample picExample = new PicExample();
         picExample.setOrderByClause("id asc");
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
         List<Pic> pics = picMapper.selectByExample(picExample);
-
         List<RentHouseTest> rentHouseTests = new ArrayList<>();
         for (RentHouse rentHouse : rentHouses) {
             RentHouseTest rentHouseTest = new RentHouseTest();
@@ -306,13 +307,50 @@ public class RentHouseServiceImpl implements RentHouseService {
             }
             rentHouseTests.add(rentHouseTest);
         }
+//        RentHouseExample rentHouseExample = new RentHouseExample();
+//        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
+//
+//        PicExample picExample = new PicExample();
+//        picExample.setOrderByClause("id asc");
+//        List<Pic> pics = picMapper.selectByExample(picExample);
+//
+//        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+//        for (RentHouse rentHouse : rentHouses) {
+//            RentHouseTest rentHouseTest = new RentHouseTest();
+//            rentHouseTest.setId(rentHouse.getId());
+//            rentHouseTest.setName(rentHouse.getName());
+//            rentHouseTest.setAddress(rentHouse.getAddress());
+//            rentHouseTest.setPosition(rentHouse.getPosition());
+//            rentHouseTest.setRent_type(rentHouse.getRent_type());
+//            rentHouseTest.setType(rentHouse.getArea_type());
+//            rentHouseTest.setArea(rentHouse.getArea());
+//            rentHouseTest.setPrice(rentHouse.getPrice());
+//            rentHouseTest.setArea_type(rentHouse.getArea_type());
+//            rentHouseTest.setCon_time(rentHouse.getCon_time());
+//            rentHouseTest.setHeating(rentHouse.getHeating());
+//            rentHouseTest.setWifi(rentHouse.getWifi());
+//            List<String> urls = new ArrayList<>();
+//            for (Pic pic : pics) {
+//                if (pic.getRenthouse_id() == rentHouse.getId()) {
+//                    urls.add(pic.getImgurl());
+//                }
+//                rentHouseTest.setUrl(urls);
+//            }
+//            rentHouseTests.add(rentHouseTest);
+//        }
         PageInfo<RentHouseTest> pageInfo = new PageInfo<>(rentHouseTests);
+        pageInfo.setTotal(p.getTotal());
+        pageInfo.setPageNum(p.getPageNum());
+        pageInfo.setPages(p.getPages());
         return pageInfo;
     }
 
     @Override
+
     public PageInfo<RentHouseTest> listByPageTime(Integer pageNum){
+
         PageHelper.startPage(pageNum, 2);
+
         RentHouseExample rentHouseExample = new RentHouseExample();
         rentHouseExample.setOrderByClause("con_time desc");
         List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
@@ -345,7 +383,9 @@ public class RentHouseServiceImpl implements RentHouseService {
             }
             rentHouseTests.add(rentHouseTest);
         }
+
         PageInfo<RentHouseTest> pageInfo = new PageInfo<>(rentHouseTests);
+
         return pageInfo;
     }
     @Override
@@ -384,6 +424,7 @@ public class RentHouseServiceImpl implements RentHouseService {
             rentHouseTests.add(rentHouseTest);
         }
         PageInfo<RentHouseTest> pageInfo = new PageInfo<>(rentHouseTests);
+
         return pageInfo;
     }
     @Override
