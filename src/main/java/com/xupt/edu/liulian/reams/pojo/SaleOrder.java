@@ -1,5 +1,8 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class SaleOrder {
@@ -7,6 +10,7 @@ public class SaleOrder {
 
     private String name;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date sale_time;
 
     private String area_type;
@@ -41,6 +45,7 @@ public class SaleOrder {
         this.name = name == null ? null : name.trim();
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getSale_time() {
         return sale_time;
     }

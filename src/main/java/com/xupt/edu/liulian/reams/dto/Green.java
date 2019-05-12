@@ -85,4 +85,9 @@ public class Green {
         this.setGreenHouseTests(greenHouseTests);
         this.setCount(count);
     }
+    public void setTest(List<GreenHouseTest> greenHouseTests,List<Agent> agents,int count){
+        this.setGreenHouseTests(greenHouseTests);
+        this.setAgents(agents);
+        this.setCount(count);
+    }
 }

@@ -53,7 +53,7 @@ public class GreenHouseController {
     @RequestMapping(value = "greenHouseAdd",method = RequestMethod.POST)
     @ResponseBody
     public GreenHouse add(GreenHouse greenHouse, Community community, Pic pic, @RequestParam("uploadedImageFile") MultipartFile uploadedImageFile, HttpServletRequest request) throws IOException{
-        System.out.println("hello liulian");
+
         String path = request.getServletContext().getRealPath("/upload/green");
         File dir = new File(path);
         if(!dir.exists()){
@@ -142,6 +142,12 @@ public class GreenHouseController {
       Green green = greenHouseService.selectBySql(address,area_type,position,build_use,heating);
       return green;
 
+    }
+    @RequestMapping(value = "selectByPhone",method = RequestMethod.POST)
+    @ResponseBody
+    public Green selectByPhone(@RequestParam("phone") String phone){
+        Green green = greenHouseService.selectByPhone(phone);
+        return green;
     }
     @RequestMapping(value = "slectByName",method = RequestMethod.POST)
     @ResponseBody

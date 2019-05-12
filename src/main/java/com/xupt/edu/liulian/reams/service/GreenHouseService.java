@@ -24,6 +24,7 @@ public interface GreenHouseService {
 
     Green selectBySql(String address,String area_type,String position,String build_use,Integer heating);
 
+    Green selectByPhone(String phone);
 
 
 
