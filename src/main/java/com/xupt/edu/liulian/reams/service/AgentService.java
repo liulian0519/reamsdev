@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface AgentService {
     List<Agent> list();
+
+    List<Agent> listByPhone(String phone);
+    void update(Agent agent);
+
 }

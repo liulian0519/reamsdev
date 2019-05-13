@@ -552,10 +552,10 @@ public class GreenHouseServiceImpl implements GreenHouseService {
 
             for(GreenHouse greenHouse:greenHouses){
                 if(saleOrder.getGreenhouse_id() == greenHouse.getId()){
-
                     GreenHouseTest greenHouseTest = new GreenHouseTest();
                     greenHouseTest.setId(greenHouse.getId());
                     greenHouseTest.setName(greenHouse.getName());
+                    greenHouseTest.setExam(greenHouse.getExam());
                     greenHouseTest.setArea_type(greenHouse.getArea_type());
                     greenHouseTest.setPosition(greenHouse.getPosition());
                     greenHouseTest.setAddress(greenHouse.getAddress());

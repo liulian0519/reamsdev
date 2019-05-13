@@ -22,4 +22,16 @@ public class AgentServiceImpl implements AgentService {
         return agentMapper.selectByExample(agentExample);
     }
 
+    @Override
+    public List<Agent> listByPhone(String phone){
+        AgentExample agentExample = new AgentExample();
+        agentExample.createCriteria().andPhoneEqualTo(phone);
+
+        return agentMapper.selectByExample(agentExample);
+    }
+    @Override
+    public void update(Agent agent){
+        agentMapper.updateByPrimaryKeySelective(agent);
+    }
+
 }
