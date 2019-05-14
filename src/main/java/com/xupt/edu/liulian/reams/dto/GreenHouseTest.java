@@ -17,6 +17,16 @@ public class GreenHouseTest {
     private Integer price;
     private Integer exam;
     private Date con_time;
+    private Date order_time;
+
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    public Date getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(Date order_time) {
+        this.order_time = order_time;
+    }
 
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getCon_time() {

@@ -26,12 +26,25 @@ public class AgentServiceImpl implements AgentService {
     public List<Agent> listByPhone(String phone){
         AgentExample agentExample = new AgentExample();
         agentExample.createCriteria().andPhoneEqualTo(phone);
-
         return agentMapper.selectByExample(agentExample);
     }
     @Override
     public void update(Agent agent){
         agentMapper.updateByPrimaryKeySelective(agent);
     }
+    @Override
+    public void add(Agent agent){
+        agentMapper.insert(agent);
+    }
+//    @Override
+//    public Agent listbyphone(String phone){
+//        AgentExample agentExample = new AgentExample();
+//        agentExample.createCriteria().andPhoneEqualTo(phone);
+//        return agentMapper.selectByExample()
+//    }
+//    @Override
+//    public List<Agent> login(String phone,String code){
+//
+//    }
 
 }

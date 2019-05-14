@@ -8,6 +8,16 @@ import java.util.List;
 
 public class RentHouseTest {
     private Integer id;
+    private Date order_time;
+
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    public Date getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(Date order_time) {
+        this.order_time = order_time;
+    }
 
     public Integer getId() {
         return id;

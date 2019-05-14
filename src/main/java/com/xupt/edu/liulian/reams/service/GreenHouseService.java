@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface GreenHouseService {
     House list();
+    House orderByPhone(String phone);
     Green selectByID(Integer id);
     void add(GreenHouse greenHouse);
     PageInfo<GreenHouseTest> listByPage(Integer pageNum);

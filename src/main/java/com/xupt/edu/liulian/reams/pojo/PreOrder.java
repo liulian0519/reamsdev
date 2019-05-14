@@ -1,5 +1,7 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class PreOrder {
@@ -7,6 +9,7 @@ public class PreOrder {
 
     private String phone;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date order_time;
 
     private String area_type;

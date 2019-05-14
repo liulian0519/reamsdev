@@ -42,6 +42,12 @@ public class GreenHouseController {
         House list = greenHouseService.list();
         return list;
     }
+    @RequestMapping(value = "agent/list",method = RequestMethod.POST)
+    @ResponseBody
+    public House agentList(@RequestParam("phone") String phone){
+        House agentlist = greenHouseService.orderByPhone(phone);
+        return agentlist;
+    }
 
     @RequestMapping(value = "greenHouseById",method = RequestMethod.POST)
     @ResponseBody

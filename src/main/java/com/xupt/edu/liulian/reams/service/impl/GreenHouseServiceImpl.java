@@ -29,7 +29,12 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     AgentMapper agentMapper;
     @Autowired
     SaleOrderMapper saleOrderMapper;
-
+    @Autowired
+    PreOrderMapper preOrderMapper;
+    @Autowired
+    HouseTypeMapper houseTypeMapper;
+    @Autowired
+    BuildingMapper buildingMapper;
     @Override
     public House list() {
         GreenHouseExample greenHouseExample = new GreenHouseExample();
@@ -113,6 +118,146 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         return house;
     }
 
+    @Override
+    public House orderByPhone(String phone){
+
+        PreOrderExample preOrderExample = new PreOrderExample();
+        preOrderExample.createCriteria().andPhoneEqualTo(phone);
+        List<PreOrder> preOrders = preOrderMapper.selectByExample(preOrderExample);
+
+        AgentExample agentExample = new AgentExample();
+        agentExample.createCriteria().andPhoneEqualTo(phone);
+        List<Agent> agents = agentMapper.selectByExample(agentExample);
+
+        GreenHouseExample greenHouseExample = new GreenHouseExample();
+        List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
+
+        NewHouseExample newHouseExample = new NewHouseExample();
+        List<NewHouse> newHouses = newHouseMapper.selectByExample(newHouseExample);
+
+        RentHouseExample rentHouseExample = new RentHouseExample();
+        List<RentHouse> rentHouses = rentHouseMapper.selectByExample(rentHouseExample);
+
+        PicExample picExample = new PicExample();
+        picExample.setOrderByClause("id asc");
+        List<Pic> pics = picMapper.selectByExample(picExample);
+
+        CommunityExample communityExample = new CommunityExample();
+        communityExample.setOrderByClause("id asc");
+        List<Community> communities = communityMapper.selectByExample(communityExample);
+
+        BuildingExample buildingExample = new BuildingExample();
+        List<Building> buildings = buildingMapper.selectByExample(buildingExample);
+
+        HouseTypeExample houseTypeExample = new HouseTypeExample();
+        List<HouseType> houseTypes = houseTypeMapper.selectByExample(houseTypeExample);
+
+        List<GreenHouseTest> greenHouseTests = new ArrayList<>();
+        List<NewHouseTest> newHouseTests = new ArrayList<>();
+        List<RentHouseTest> rentHouseTests = new ArrayList<>();
+
+        for(PreOrder preOrder:preOrders){
+
+            for(GreenHouse greenHouse:greenHouses){
+                if(preOrder.getGreenhouse_id() == greenHouse.getId()){
+                    GreenHouseTest greenHouseTest = new GreenHouseTest();
+
+                    greenHouseTest.setOrder_time(preOrder.getOrder_time());
+                    greenHouseTest.setId(greenHouse.getId());
+                    greenHouseTest.setName(greenHouse.getName());
+                    greenHouseTest.setExam(greenHouse.getExam());
+                    greenHouseTest.setArea_type(greenHouse.getArea_type());
+                    greenHouseTest.setPosition(greenHouse.getPosition());
+                    greenHouseTest.setAddress(greenHouse.getAddress());
+                    greenHouseTest.setFloor(greenHouse.getFloor());
+                    greenHouseTest.setArea(greenHouse.getArea());
+                    greenHouseTest.setPrice(greenHouse.getPrice());
+                    greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+                    greenHouseTest.setCon_time(greenHouse.getCon_time());
+                    for (Community community : communities) {
+                        if(greenHouse.getCommunity_id() == community.getId()){
+                            greenHouseTest.setBuild_time(community.getBuild_time());
+                        }
+                    }
+                    List<String> urls = new ArrayList<>();
+                    for (Pic pic : pics) {
+                        if (pic.getGreenhouse_id() == greenHouse.getId()) {
+                            urls.add(pic.getImgurl());
+                        }
+                        greenHouseTest.setUrl(urls);
+                    }
+                    greenHouseTests.add(greenHouseTest);
+
+                }
+            }
+            for(NewHouse newHouse : newHouses){
+                if(preOrder.getNewhouse_id() == newHouse.getId()){
+                    NewHouseTest newHouseTest = new NewHouseTest();
+                    newHouseTest.setOrder_time(preOrder.getOrder_time());
+                    newHouseTest.setId(newHouse.getId());
+                    newHouseTest.setName(newHouse.getName());
+                    newHouseTest.setType(newHouse.getType());
+                    newHouseTest.setAddress(newHouse.getAddress());
+                    newHouseTest.setPrice(newHouse.getPrice());
+                    newHouseTest.setStatus(newHouse.getStatus());
+                    List<String> urls = new ArrayList<>();
+                    for(Pic pic : pics){
+                        if(pic.getNewhouse_id() == newHouse.getId()){
+                            urls.add(pic.getImgurl());
+                        }
+                        newHouseTest.setUrl(urls);
+                    }
+
+                    List<String> typeUrls = new ArrayList<>();
+                    List<String> areaTypes = new ArrayList<>();
+                    for(HouseType houseType:houseTypes){
+                        if(houseType.getBuilding_id()==newHouse.getBuilding_id()){
+                            typeUrls.add(houseType.getHouse_img());
+                            areaTypes.add(houseType.getArea_type());
+                        }
+                        newHouseTest.setTypeUrl(typeUrls);
+                        newHouseTest.setArea_type(areaTypes);
+                    }
+                    newHouseTests.add(newHouseTest);
+                }
+            }
+            for(RentHouse rentHouse:rentHouses){
+                if(preOrder.getRenthouse_id() == rentHouse.getId()){
+                    RentHouseTest rentHouseTest = new RentHouseTest();
+
+                    rentHouseTest.setOrder_time(preOrder.getOrder_time());
+                    rentHouseTest.setId(rentHouse.getId());
+                    rentHouseTest.setName(rentHouse.getName());
+                    rentHouseTest.setAddress(rentHouse.getAddress());
+                    rentHouseTest.setPosition(rentHouse.getPosition());
+                    rentHouseTest.setRent_type(rentHouse.getRent_type());
+                    rentHouseTest.setType(rentHouse.getArea_type());
+                    rentHouseTest.setArea(rentHouse.getArea());
+                    rentHouseTest.setPrice(rentHouse.getPrice());
+                    rentHouseTest.setArea_type(rentHouse.getArea_type());
+                    rentHouseTest.setCon_time(rentHouse.getCon_time());
+                    rentHouseTest.setHeating(rentHouse.getHeating());
+                    rentHouseTest.setWifi(rentHouse.getWifi());
+                    List<String> urls = new ArrayList<>();
+                    for (Pic pic : pics) {
+                        if (pic.getRenthouse_id() == rentHouse.getId()) {
+                            urls.add(pic.getImgurl());
+                        }
+                        rentHouseTest.setUrl(urls);
+                    }
+                    rentHouseTests.add(rentHouseTest);
+                }
+                }
+
+
+
+        }
+
+        House house = new House();
+        house.sete(greenHouseTests,newHouseTests,rentHouseTests,preOrders);
+        return house;
+
+    }
     @Override
     public Green selectByID(Integer green_id) {
         GreenHouse greenHouse = greenHouseMapper.selectByPrimaryKey(green_id);
@@ -536,6 +681,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         AgentExample agentExample = new AgentExample();
         agentExample.createCriteria().andPhoneEqualTo(phone);
         List<Agent> agents = agentMapper.selectByExample(agentExample);
+
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 

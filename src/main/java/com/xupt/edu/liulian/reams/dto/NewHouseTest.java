@@ -1,5 +1,8 @@
 package com.xupt.edu.liulian.reams.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 import java.util.List;
 
 public class NewHouseTest {
@@ -11,6 +14,16 @@ public class NewHouseTest {
     private Integer status;
     private String address;
     private List<NewHouseTest> newHouseTests;
+    private Date order_time;
+
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    public Date getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(Date order_time) {
+        this.order_time = order_time;
+    }
 
     public List<NewHouseTest> getNewHouseTests() {
         return newHouseTests;
