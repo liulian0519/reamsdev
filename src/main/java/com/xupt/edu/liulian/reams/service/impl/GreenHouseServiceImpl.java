@@ -731,4 +731,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         green.setTest(greenHouseTests,agents,greenHouseTests.size());
         return green;
     }
+
+    @Override
+    public void update(GreenHouse greenHouse){
+        greenHouseMapper.updateByPrimaryKeySelective(greenHouse);
+    }
 }

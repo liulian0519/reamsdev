@@ -162,6 +162,17 @@ public class GreenHouseController {
         return green;
     }
 
+    @RequestMapping(value = "update",method = RequestMethod.POST)
+    @ResponseBody
+    public String update(GreenHouse greenHouse,HttpServletResponse response)throws Exception{
+        System.out.println(greenHouse);
+        greenHouseService.update((greenHouse));
+        JSONObject result = new JSONObject();
+        result.put("success","ok");
+        ResponseUtil.write(response,result);
+        return null;
+    }
+
 
 }
 

@@ -27,6 +27,7 @@ public interface GreenHouseService {
 
     Green selectByPhone(String phone);
 
+    void update(GreenHouse greenHouse);
 
 
 
