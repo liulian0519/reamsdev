@@ -20,7 +20,7 @@ public class SaleOrderController {
     @RequestMapping(value = "saleorderAdd",method = RequestMethod.POST)
     @ResponseBody
     public SaleOrder add(SaleOrder saleOrder, HttpServletResponse response)throws Exception{
-        System.out.println("sal");
+
         saleOrderService.add(saleOrder);
 //        return saleOrder;
         JSONObject result=new JSONObject();

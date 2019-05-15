@@ -29,6 +29,8 @@ public interface GreenHouseService {
 
     void update(GreenHouse greenHouse);
 
+    Green listByExam();
+
 
 
 

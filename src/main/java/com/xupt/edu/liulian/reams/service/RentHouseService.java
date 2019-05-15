@@ -30,5 +30,7 @@ public interface RentHouseService {
 
     Rent selectBySql(String address,Byte rent_type,String price,String area_type,String position);
 
+    Rent listByExam();
+
 
 }

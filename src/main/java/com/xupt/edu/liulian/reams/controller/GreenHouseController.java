@@ -173,6 +173,14 @@ public class GreenHouseController {
         return null;
     }
 
+    @RequestMapping(value = "listByExam",method = RequestMethod.GET)
+    @ResponseBody
+    public Green listByExam(){
+        Green green = greenHouseService.listByExam();
+        return green;
+
+    }
+
 
 }
 

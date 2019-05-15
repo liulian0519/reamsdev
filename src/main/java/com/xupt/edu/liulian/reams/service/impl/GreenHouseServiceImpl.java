@@ -300,7 +300,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     public PageInfo<GreenHouseTest> listByPage(Integer pageNum) {
         Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
-        greenHouseExample.createCriteria().andExamNotEqualTo(0);
+        greenHouseExample.createCriteria().andExamEqualTo(1);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -350,7 +350,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("con_time desc");
-        greenHouseExample.createCriteria().andExamNotEqualTo(0);
+        greenHouseExample.createCriteria().andExamEqualTo(1);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -400,7 +400,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("price desc");
-        greenHouseExample.createCriteria().andExamNotEqualTo(0);
+        greenHouseExample.createCriteria().andExamEqualTo(1);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -450,7 +450,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         Page p =PageHelper.startPage(pageNum, 2);
         GreenHouseExample greenHouseExample = new GreenHouseExample();
         greenHouseExample.setOrderByClause("area asc");
-        greenHouseExample.createCriteria().andExamNotEqualTo(0);
+        greenHouseExample.createCriteria().andExamEqualTo(1);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -497,7 +497,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     @Override
     public Green listCount(){
         GreenHouseExample greenHouseExample = new GreenHouseExample();
-        greenHouseExample.createCriteria().andExamNotEqualTo(0);
+        greenHouseExample.createCriteria().andExamEqualTo(1);
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         Green green = new Green();
@@ -510,9 +510,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         GreenHouseExample greenHouseExample = new GreenHouseExample();
 
         if(heating == 2){
-            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%");
+            greenHouseExample.createCriteria().andExamEqualTo(1).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%");
         }else{
-            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%").andHeatingEqualTo(heating);
+            greenHouseExample.createCriteria().andExamEqualTo(1).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%").andHeatingEqualTo(heating);
         }
 
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
@@ -562,9 +562,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         GreenHouseExample greenHouseExample = new GreenHouseExample();
 
         if(heating == 2){
-            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%");
+            greenHouseExample.createCriteria().andExamEqualTo(1).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%");
         }else{
-            greenHouseExample.createCriteria().andExamNotEqualTo(0).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%").andHeatingEqualTo(heating);
+            greenHouseExample.createCriteria().andExamEqualTo(1).andAddressLike("%"+address+"%").andArea_typeLike("%"+ area_type+"%").andPositionLike("%"+position+"%").andBuild_useLike("%"+build_use+"%").andHeatingEqualTo(heating);
         }
 
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
@@ -618,7 +618,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     public Green listByName(String name){
         GreenHouseExample greenHouseExample = new GreenHouseExample();
 
-        greenHouseExample.createCriteria().andExamNotEqualTo(0).andNameLike("%"+ name +"%");
+        greenHouseExample.createCriteria().andExamEqualTo(1).andNameLike("%"+ name +"%");
         List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
 
         PicExample picExample = new PicExample();
@@ -735,5 +735,51 @@ public class GreenHouseServiceImpl implements GreenHouseService {
     @Override
     public void update(GreenHouse greenHouse){
         greenHouseMapper.updateByPrimaryKeySelective(greenHouse);
+    }
+    @Override
+    public Green listByExam(){
+        GreenHouseExample greenHouseExample = new GreenHouseExample();
+        List<GreenHouse> greenHouses = greenHouseMapper.selectByExample(greenHouseExample);
+
+        PicExample picExample = new PicExample();
+        picExample.setOrderByClause("id asc");
+        List<Pic> pics = picMapper.selectByExample(picExample);
+
+        CommunityExample communityExample = new CommunityExample();
+
+        List<GreenHouseTest> greenHouseTests = new ArrayList<>();
+        for (GreenHouse greenHouse : greenHouses) {
+            GreenHouseTest greenHouseTest = new GreenHouseTest();
+            greenHouseTest.setExam(greenHouse.getExam());
+            greenHouseTest.setId(greenHouse.getId());
+            greenHouseTest.setName(greenHouse.getName());
+            greenHouseTest.setArea_type(greenHouse.getArea_type());
+            greenHouseTest.setPosition(greenHouse.getPosition());
+            greenHouseTest.setAddress(greenHouse.getAddress());
+            greenHouseTest.setFloor(greenHouse.getFloor());
+            greenHouseTest.setArea(greenHouse.getArea());
+            greenHouseTest.setPrice(greenHouse.getPrice());
+            greenHouseTest.setBuild_use(greenHouse.getBuild_use());
+            greenHouseTest.setCon_time(greenHouse.getCon_time());
+            communityExample.createCriteria().andGreenHouse_idEqualTo(greenHouse.getId());
+            List<Community> communities = communityMapper.selectByExample(communityExample);
+            for (Community community : communities) {
+                greenHouseTest.setBuild_time(community.getBuild_time());
+            }
+
+            List<String> urls = new ArrayList<>();
+            for (Pic pic : pics) {
+                if (pic.getGreenhouse_id() == greenHouse.getId()) {
+                    urls.add(pic.getImgurl());
+                }
+                greenHouseTest.setUrl(urls);
+            }
+            greenHouseTests.add(greenHouseTest);
+        }
+
+        Green green = new Green();
+        green.setTest(greenHouseTests,greenHouseTests.size());
+
+        return green;
     }
 }

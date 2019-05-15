@@ -48,6 +48,15 @@ public class RentHouseTest {
     private Date con_time;
     private Byte heating;
     private Byte wifi;
+    private Integer exam;
+
+    public Integer getExam() {
+        return exam;
+    }
+
+    public void setExam(Integer exam) {
+        this.exam = exam;
+    }
 
     public String getArea_type() {
         return area_type;

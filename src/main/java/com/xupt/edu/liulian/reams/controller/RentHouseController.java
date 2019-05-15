@@ -76,6 +76,13 @@ public class RentHouseController {
         return rent;
     }
 
+    @RequestMapping(value = "rentlistByExam",method = RequestMethod.GET)
+    @ResponseBody
+    public Rent listByExam(){
+        Rent rent = rentHouseService.listByExam();
+        return rent;
+    }
+
     @RequestMapping(value = "rentHouseByPage", method = RequestMethod.GET)
     @ResponseBody
     public PageInfo<RentHouseTest> list(@RequestParam("pageNum") Integer pageNum) {
