@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xupt.edu.liulian.reams.mapper.user_ownerMapper">
+  <resultMap id="BaseResultMap" type="com.xupt.edu.liulian.reams.pojo.user_owner">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="rentHouse_id" jdbcType="INTEGER" property="rentHouse_id" />
+    <result column="newHouse_id" jdbcType="INTEGER" property="newHouse_id" />
+    <result column="greenHouse_id" jdbcType="INTEGER" property="greenHouse_id" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, address, phone, rentHouse_id, newHouse_id, greenHouse_id
+  </sql>
+  <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.user_ownerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from user_owner
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_owner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_owner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.user_owner" useGeneratedKeys="true">
+    insert into user_owner (name, address, phone, 
+      rentHouse_id, newHouse_id, greenHouse_id
+      )
+    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{rentHouse_id,jdbcType=INTEGER}, #{newHouse_id,jdbcType=INTEGER}, #{greenHouse_id,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.user_owner" useGeneratedKeys="true">
+    insert into user_owner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="rentHouse_id != null">
+        rentHouse_id,
+      </if>
+      <if test="newHouse_id != null">
+        newHouse_id,
+      </if>
+      <if test="greenHouse_id != null">
+        greenHouse_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="rentHouse_id != null">
+        #{rentHouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="newHouse_id != null">
+        #{newHouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="greenHouse_id != null">
+        #{greenHouse_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xupt.edu.liulian.reams.pojo.user_owner">
+    update user_owner
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="rentHouse_id != null">
+        rentHouse_id = #{rentHouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="newHouse_id != null">
+        newHouse_id = #{newHouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="greenHouse_id != null">
+        greenHouse_id = #{greenHouse_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xupt.edu.liulian.reams.pojo.user_owner">
+    update user_owner
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      rentHouse_id = #{rentHouse_id,jdbcType=INTEGER},
+      newHouse_id = #{newHouse_id,jdbcType=INTEGER},
+      greenHouse_id = #{greenHouse_id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

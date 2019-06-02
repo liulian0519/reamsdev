@@ -9,6 +9,15 @@ import java.util.List;
 public class RentHouseTest {
     private Integer id;
     private Date order_time;
+    private String rent_phone;
+
+    public String getRent_phone() {
+        return rent_phone;
+    }
+
+    public void setRent_phone(String rent_phone) {
+        this.rent_phone = rent_phone;
+    }
 
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getOrder_time() {

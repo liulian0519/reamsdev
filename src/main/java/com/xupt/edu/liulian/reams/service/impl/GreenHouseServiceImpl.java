@@ -161,7 +161,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             for(GreenHouse greenHouse:greenHouses){
                 if(preOrder.getGreenhouse_id() == greenHouse.getId()){
                     GreenHouseTest greenHouseTest = new GreenHouseTest();
-
+                    greenHouseTest.setRent_phone(preOrder.getRent_phone());
                     greenHouseTest.setOrder_time(preOrder.getOrder_time());
                     greenHouseTest.setId(greenHouse.getId());
                     greenHouseTest.setName(greenHouse.getName());
@@ -193,6 +193,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
             for(NewHouse newHouse : newHouses){
                 if(preOrder.getNewhouse_id() == newHouse.getId()){
                     NewHouseTest newHouseTest = new NewHouseTest();
+                    newHouseTest.setRent_phone(preOrder.getRent_phone());
                     newHouseTest.setOrder_time(preOrder.getOrder_time());
                     newHouseTest.setId(newHouse.getId());
                     newHouseTest.setName(newHouse.getName());
@@ -225,6 +226,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
                 if(preOrder.getRenthouse_id() == rentHouse.getId()){
                     RentHouseTest rentHouseTest = new RentHouseTest();
 
+                    rentHouseTest.setRent_phone(preOrder.getRent_phone());
                     rentHouseTest.setOrder_time(preOrder.getOrder_time());
                     rentHouseTest.setId(rentHouse.getId());
                     rentHouseTest.setName(rentHouse.getName());
@@ -267,6 +269,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         communityExample.createCriteria().andIdEqualTo(greenHouse.getCommunity_id());
         List<Community> communities = communityMapper.selectByExample(communityExample);
 
+        SaleOrderExample saleOrderExample = new SaleOrderExample();
+        saleOrderExample.createCriteria().andUser_phoneEqualTo(greenHouse.getUser_phone());
+        List<SaleOrder> saleOrders = saleOrderMapper.selectByExample(saleOrderExample);
 
         PicExample picExample = new PicExample();
         picExample.setOrderByClause("id asc");
@@ -277,9 +282,10 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         List<String> urls = new ArrayList<>();
         for (Pic pic : pics) {
             if (pic.getGreenhouse_id() == green_id) {
+                picTest.setId(pic.getId());
                 urls.add(pic.getImgurl());
             }
-            picTest.setId(green_id);
+
             picTest.setUrl(urls);
         }
         picTests.add(picTest);
@@ -290,7 +296,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
 
 
         Green green = new Green();
-        green.setGreen(communities, greenHouse, picTests, agents);
+        green.setGreen(communities, greenHouse, picTests, agents,saleOrders);
         return green;
 
     }
@@ -339,6 +345,9 @@ public class GreenHouseServiceImpl implements GreenHouseService {
         }
 
         PageInfo<GreenHouseTest> pageInfo = new PageInfo<>(greenHouseTests);
+//        System.out.println(pageInfo);
+//        System.out.println(p.getTotal());
+//        System.out.println(p.getPages());
         pageInfo.setTotal(p.getTotal());
         pageInfo.setPageNum(p.getPageNum());
         pageInfo.setPages(p.getPages());
@@ -710,6 +719,7 @@ public class GreenHouseServiceImpl implements GreenHouseService {
                     greenHouseTest.setPrice(greenHouse.getPrice());
                     greenHouseTest.setBuild_use(greenHouse.getBuild_use());
                     greenHouseTest.setCon_time(greenHouse.getCon_time());
+                    greenHouseTest.setUser_phone(greenHouse.getUser_phone());
                     for (Community community : communities) {
                         if(greenHouse.getCommunity_id() == community.getId()){
                             greenHouseTest.setBuild_time(community.getBuild_time());

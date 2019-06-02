@@ -14,6 +14,7 @@ public class AgentServiceImpl implements AgentService {
     @Autowired
     AgentMapper agentMapper;
 
+
     @Override
     public List<Agent> list(){
         AgentExample agentExample = new AgentExample();

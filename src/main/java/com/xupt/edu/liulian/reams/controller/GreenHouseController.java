@@ -7,9 +7,11 @@ import com.xupt.edu.liulian.reams.dto.House;
 import com.xupt.edu.liulian.reams.pojo.Community;
 import com.xupt.edu.liulian.reams.pojo.GreenHouse;
 import com.xupt.edu.liulian.reams.pojo.Pic;
+import com.xupt.edu.liulian.reams.pojo.SaleOrder;
 import com.xupt.edu.liulian.reams.service.CommunityService;
 import com.xupt.edu.liulian.reams.service.GreenHouseService;
 import com.xupt.edu.liulian.reams.service.PicService;
+import com.xupt.edu.liulian.reams.service.SaleOrderService;
 import com.xupt.edu.liulian.reams.util.PageInfo;
 import com.xupt.edu.liulian.reams.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ public class GreenHouseController {
     PicService picService;
     @Autowired
     CommunityService communityService;
+    @Autowired
+    SaleOrderService saleOrderService;
 
     @RequestMapping(value = "list" ,method = RequestMethod.GET)
     @ResponseBody
@@ -69,7 +73,6 @@ public class GreenHouseController {
 
         greenHouse.setCommunity_id(community.getId());
         greenHouseService.add(greenHouse);
-
 
 
         String fileName = uploadedImageFile.getOriginalFilename();
@@ -181,6 +184,49 @@ public class GreenHouseController {
 
     }
 
+    @RequestMapping(value = "greenhouseUpdate",method = RequestMethod.POST)
+    @ResponseBody
+    public Green updateAll(GreenHouse greenHouse, SaleOrder saleOrder,Pic pic, Community community, @RequestParam("green_id") Integer green_id, @RequestParam("uploadedImageFile") MultipartFile uploadedImageFile, HttpServletRequest request) throws IOException{
+
+
+        Green green = greenHouseService.selectByID(green_id);
+        System.out.print(green);
+        System.out.print(green.getGreenHouse().getCommunity_id());
+
+        greenHouse.setId(green_id);
+        greenHouseService.update(greenHouse);
+
+        community.setId(green.getGreenHouse().getCommunity_id());
+        communityService.update(community);
+
+        saleOrder.setId(green.getSaleOrders().get(0).getId());
+        saleOrderService.update(saleOrder);
+
+        String path = request.getServletContext().getRealPath("/upload/green");
+        File dir = new File(path);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+        System.out.print(green.getGreenHouse().getId());
+        String fileName = uploadedImageFile.getOriginalFilename();
+        String img = green.getGreenHouse().getId() + fileName.substring(fileName.lastIndexOf("."));
+        FileOutputStream imgOut = new FileOutputStream(new File(dir,img));
+        imgOut.write(uploadedImageFile.getBytes());
+        imgOut.close();
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("path",img);
+        String imgurl = "http://localhost:8080/upload/green/"+ img;
+        System.out.println(imgurl);
+        pic.setImgurl(imgurl);
+        pic.setGreenhouse_id(greenHouse.getId());
+        pic.setType(1);
+
+        pic.setId(green.getPicTests().get(0).getId());
+        picService.update(pic);
+
+        return green;
+
+    }
 
 }
 

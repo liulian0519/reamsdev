@@ -792,6 +792,76 @@ public class PreOrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andRent_phoneIsNull() {
+            addCriterion("rent_phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneIsNotNull() {
+            addCriterion("rent_phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneEqualTo(String value) {
+            addCriterion("rent_phone =", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneNotEqualTo(String value) {
+            addCriterion("rent_phone <>", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneGreaterThan(String value) {
+            addCriterion("rent_phone >", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneGreaterThanOrEqualTo(String value) {
+            addCriterion("rent_phone >=", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneLessThan(String value) {
+            addCriterion("rent_phone <", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneLessThanOrEqualTo(String value) {
+            addCriterion("rent_phone <=", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneLike(String value) {
+            addCriterion("rent_phone like", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneNotLike(String value) {
+            addCriterion("rent_phone not like", value, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneIn(List<String> values) {
+            addCriterion("rent_phone in", values, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneNotIn(List<String> values) {
+            addCriterion("rent_phone not in", values, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneBetween(String value1, String value2) {
+            addCriterion("rent_phone between", value1, value2, "rent_phone");
+            return (Criteria) this;
+        }
+
+        public Criteria andRent_phoneNotBetween(String value1, String value2) {
+            addCriterion("rent_phone not between", value1, value2, "rent_phone");
+            return (Criteria) this;
+        }
+
         public Criteria andRenthouse_idIsNull() {
             addCriterion("renthouse_id is null");
             return (Criteria) this;

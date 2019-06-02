@@ -47,6 +47,10 @@ public class GreenHouse {
 
     private String housex;
 
+    private String rent_phone;
+
+    private String user_phone;
+
     private Integer exam;
 
     public Integer getId() {
@@ -153,7 +157,6 @@ public class GreenHouse {
         this.right_age = right_age == null ? null : right_age.trim();
     }
 
-
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getCon_time() {
         return con_time;
@@ -209,6 +212,22 @@ public class GreenHouse {
 
     public void setHousex(String housex) {
         this.housex = housex == null ? null : housex.trim();
+    }
+
+    public String getRent_phone() {
+        return rent_phone;
+    }
+
+    public void setRent_phone(String rent_phone) {
+        this.rent_phone = rent_phone == null ? null : rent_phone.trim();
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone == null ? null : user_phone.trim();
     }
 
     public Integer getExam() {

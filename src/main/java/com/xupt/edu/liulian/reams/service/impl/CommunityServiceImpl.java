@@ -15,5 +15,9 @@ public class CommunityServiceImpl implements CommunityService {
     public void add(Community community){
         communityMapper.insert(community);
     }
+    @Override
+    public void update(Community community){
+        communityMapper.updateByPrimaryKeySelective(community);
+    }
 
 }

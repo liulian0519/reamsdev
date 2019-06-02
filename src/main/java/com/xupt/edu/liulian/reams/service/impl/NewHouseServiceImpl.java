@@ -2,7 +2,6 @@ package com.xupt.edu.liulian.reams.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sun.deploy.panel.AbstractRadioPropertyGroup;
 import com.xupt.edu.liulian.reams.dto.HouseTypeTest;
 import com.xupt.edu.liulian.reams.dto.New;
 import com.xupt.edu.liulian.reams.dto.NewHouseTest;

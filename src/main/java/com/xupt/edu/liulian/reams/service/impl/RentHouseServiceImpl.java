@@ -77,7 +77,7 @@ public class RentHouseServiceImpl implements RentHouseService {
     public Rent listByName(String name) {
 
         RentHouseExample rentHouseExample = new RentHouseExample();
-        rentHouseExample.createCriteria().andExamEqualTo(1);
+//        rentHouseExample.createCriteria().andExamEqualTo(1);
         rentHouseExample.createCriteria().andNameLike("%" + name + "%");
         List<RentHouse> rentHouseList = rentHouseMapper.selectByExample(rentHouseExample);
 

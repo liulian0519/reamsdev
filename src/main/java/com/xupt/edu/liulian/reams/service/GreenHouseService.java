@@ -31,6 +31,10 @@ public interface GreenHouseService {
 
     Green listByExam();
 
+//    Green listById();
+
+
+
 
 
 

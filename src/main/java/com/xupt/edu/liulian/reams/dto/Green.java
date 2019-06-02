@@ -3,6 +3,7 @@ package com.xupt.edu.liulian.reams.dto;
 import com.xupt.edu.liulian.reams.pojo.Agent;
 import com.xupt.edu.liulian.reams.pojo.Community;
 import com.xupt.edu.liulian.reams.pojo.GreenHouse;
+import com.xupt.edu.liulian.reams.pojo.SaleOrder;
 
 import java.util.List;
 
@@ -13,6 +14,16 @@ public class Green {
     private  List<PicTest> picTests;
     private List<Agent> agents;
     private List<GreenHouseTest> greenHouseTests;
+    private List<SaleOrder> saleOrders;
+
+    public List<SaleOrder> getSaleOrders() {
+        return saleOrders;
+    }
+
+    public void setSaleOrders(List<SaleOrder> saleOrders) {
+        this.saleOrders = saleOrders;
+    }
+
     private int count;
 
     public List<PicTest> getPicTests() {
@@ -62,11 +73,13 @@ public class Green {
     public void setGreenHouse(GreenHouse greenHouse) {
         this.greenHouse = greenHouse;
     }
-    public void setGreen(List<Community> communities,GreenHouse greenHouse,List<PicTest> picTests,List<Agent> agents){
+    public void setGreen(List<Community> communities, GreenHouse greenHouse, List<PicTest> picTests, List<Agent> agents, List<SaleOrder> saleOrders){
         this.setCommunityList(communities);
         this.setGreenHouse(greenHouse);
         this.setPicTests(picTests);
         this.setAgents(agents);
+        this.setSaleOrders(saleOrders);
+
     }
 
     public List<GreenHouse> getGreenHouses() {

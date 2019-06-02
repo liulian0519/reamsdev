@@ -1,5 +1,6 @@
 package com.xupt.edu.liulian.reams.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -61,6 +62,8 @@ public class RentHouse {
     private String housey;
 
     private String housex;
+
+    private String user_phone;
 
     private Integer exam;
 
@@ -128,6 +131,7 @@ public class RentHouse {
         this.position = position == null ? null : position.trim();
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getCon_time() {
         return con_time;
     }
@@ -286,6 +290,14 @@ public class RentHouse {
 
     public void setHousex(String housex) {
         this.housex = housex == null ? null : housex.trim();
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone == null ? null : user_phone.trim();
     }
 
     public Integer getExam() {

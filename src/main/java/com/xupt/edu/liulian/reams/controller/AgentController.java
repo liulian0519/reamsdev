@@ -88,6 +88,7 @@ public class AgentController {
         return success;
     }
 
+
     @RequestMapping(value = "verfiycode", method = RequestMethod.GET)
     @ResponseBody
     public void getVerifyCodeImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -105,6 +106,7 @@ public class AgentController {
         VerifyCode.output(bufferedImage, response.getOutputStream());
     }
 
+//    @RequestMapping
     @RequestMapping(value = "verfiy", method = RequestMethod.POST)
     public void getVerfiy(@RequestParam("verfiycode") String verfiycode,
                           @RequestParam("phone") String phone, HttpServletResponse response, HttpServletRequest request) throws IOException {

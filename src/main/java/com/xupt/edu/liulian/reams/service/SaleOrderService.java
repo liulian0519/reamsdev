@@ -5,5 +5,6 @@ import com.xupt.edu.liulian.reams.pojo.SaleOrder;
 
 public interface SaleOrderService {
     void add(SaleOrder saleOrder);
+    void update(SaleOrder saleOrder);
 //    Green selectByPhone(String phone);
 }

@@ -12,6 +12,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="greenhouse_id" jdbcType="INTEGER" property="greenhouse_id" />
     <result column="newhouse_id" jdbcType="INTEGER" property="newhouse_id" />
+    <result column="rent_phone" jdbcType="VARCHAR" property="rent_phone" />
     <result column="renthouse_id" jdbcType="INTEGER" property="renthouse_id" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -45,7 +46,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, phone, order_time, area_type, area, order_type, price, name, greenhouse_id, newhouse_id, 
-    renthouse_id
+    rent_phone, renthouse_id
   </sql>
   <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.PreOrderExample" resultMap="BaseResultMap">
     select
@@ -76,11 +77,11 @@
     insert into pre_order (phone, order_time, area_type, 
       area, order_type, price, 
       name, greenhouse_id, newhouse_id, 
-      renthouse_id)
+      rent_phone, renthouse_id)
     values (#{phone,jdbcType=VARCHAR}, #{order_time,jdbcType=DATE}, #{area_type,jdbcType=VARCHAR}, 
       #{area,jdbcType=VARCHAR}, #{order_type,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{greenhouse_id,jdbcType=INTEGER}, #{newhouse_id,jdbcType=INTEGER}, 
-      #{renthouse_id,jdbcType=INTEGER})
+      #{rent_phone,jdbcType=VARCHAR}, #{renthouse_id,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.PreOrder" useGeneratedKeys="true">
     insert into pre_order
@@ -111,6 +112,9 @@
       </if>
       <if test="newhouse_id != null">
         newhouse_id,
+      </if>
+      <if test="rent_phone != null">
+        rent_phone,
       </if>
       <if test="renthouse_id != null">
         renthouse_id,
@@ -143,6 +147,9 @@
       </if>
       <if test="newhouse_id != null">
         #{newhouse_id,jdbcType=INTEGER},
+      </if>
+      <if test="rent_phone != null">
+        #{rent_phone,jdbcType=VARCHAR},
       </if>
       <if test="renthouse_id != null">
         #{renthouse_id,jdbcType=INTEGER},
@@ -179,6 +186,9 @@
       <if test="newhouse_id != null">
         newhouse_id = #{newhouse_id,jdbcType=INTEGER},
       </if>
+      <if test="rent_phone != null">
+        rent_phone = #{rent_phone,jdbcType=VARCHAR},
+      </if>
       <if test="renthouse_id != null">
         renthouse_id = #{renthouse_id,jdbcType=INTEGER},
       </if>
@@ -196,6 +206,7 @@
       name = #{name,jdbcType=VARCHAR},
       greenhouse_id = #{greenhouse_id,jdbcType=INTEGER},
       newhouse_id = #{newhouse_id,jdbcType=INTEGER},
+      rent_phone = #{rent_phone,jdbcType=VARCHAR},
       renthouse_id = #{renthouse_id,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

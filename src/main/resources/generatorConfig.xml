@@ -6,7 +6,7 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
 <!--        避免生成重复代码的插件-->
-                <plugin type="com.xupt.edu.liulian.reams.util.OverIsMergeablePlugin" />
+                <!--<plugin type="com.xupt.edu.liulian.reams.util.OverIsMergeablePlugin" />-->
 
         <!--是否在代码中显示注释-->
         <commentGenerator>
@@ -129,5 +129,19 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
 
+        <table tableName="user_owner" domainObjectName="user_owner" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="false">
+            <property name="my.isgen.usekeys" value="true"/>
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="user_rent" domainObjectName="user_rent" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               selectByExampleQueryId="false">
+            <property name="my.isgen.usekeys" value="true"/>
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
     </context>
 </generatorConfiguration>

@@ -18,6 +18,25 @@ public class GreenHouseTest {
     private Integer exam;
     private Date con_time;
     private Date order_time;
+    private String rent_phone;
+
+    public String getRent_phone() {
+        return rent_phone;
+    }
+
+    public void setRent_phone(String rent_phone) {
+        this.rent_phone = rent_phone;
+    }
+
+    private String user_phone;
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
+    }
 
     @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
     public Date getOrder_time() {

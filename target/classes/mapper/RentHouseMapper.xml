@@ -30,6 +30,7 @@
     <result column="community_id" jdbcType="INTEGER" property="community_id" />
     <result column="housey" jdbcType="VARCHAR" property="housey" />
     <result column="housex" jdbcType="VARCHAR" property="housex" />
+    <result column="user_phone" jdbcType="VARCHAR" property="user_phone" />
     <result column="exam" jdbcType="INTEGER" property="exam" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -64,7 +65,7 @@
   <sql id="Base_Column_List">
     id, name, address, area_type, area, price, rent_type, position, con_time, rent_time, 
     floor, eletric, elevator, water, fire, tv, fridge, washer, air_condition, shower, 
-    bed, heating, wifi, gas, closespress, community_id, housey, housex, exam
+    bed, heating, wifi, gas, closespress, community_id, housey, housex, user_phone, exam
   </sql>
   <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouseExample" resultMap="BaseResultMap">
     select
@@ -100,8 +101,8 @@
       washer, air_condition, shower, 
       bed, heating, wifi, 
       gas, closespress, community_id, 
-      housey, housex, exam
-      )
+      housey, housex, user_phone, 
+      exam)
     values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{area_type,jdbcType=VARCHAR}, 
       #{area,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{rent_type,jdbcType=TINYINT}, 
       #{position,jdbcType=VARCHAR}, #{con_time,jdbcType=DATE}, #{rent_time,jdbcType=VARCHAR}, 
@@ -110,8 +111,8 @@
       #{washer,jdbcType=TINYINT}, #{air_condition,jdbcType=TINYINT}, #{shower,jdbcType=TINYINT}, 
       #{bed,jdbcType=TINYINT}, #{heating,jdbcType=TINYINT}, #{wifi,jdbcType=TINYINT}, 
       #{gas,jdbcType=TINYINT}, #{closespress,jdbcType=TINYINT}, #{community_id,jdbcType=INTEGER}, 
-      #{housey,jdbcType=VARCHAR}, #{housex,jdbcType=VARCHAR}, #{exam,jdbcType=INTEGER}
-      )
+      #{housey,jdbcType=VARCHAR}, #{housex,jdbcType=VARCHAR}, #{user_phone,jdbcType=VARCHAR}, 
+      #{exam,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.RentHouse" useGeneratedKeys="true">
     insert into renthouse
@@ -196,6 +197,9 @@
       </if>
       <if test="housex != null">
         housex,
+      </if>
+      <if test="user_phone != null">
+        user_phone,
       </if>
       <if test="exam != null">
         exam,
@@ -282,6 +286,9 @@
       </if>
       <if test="housex != null">
         #{housex,jdbcType=VARCHAR},
+      </if>
+      <if test="user_phone != null">
+        #{user_phone,jdbcType=VARCHAR},
       </if>
       <if test="exam != null">
         #{exam,jdbcType=INTEGER},
@@ -372,6 +379,9 @@
       <if test="housex != null">
         housex = #{housex,jdbcType=VARCHAR},
       </if>
+      <if test="user_phone != null">
+        user_phone = #{user_phone,jdbcType=VARCHAR},
+      </if>
       <if test="exam != null">
         exam = #{exam,jdbcType=INTEGER},
       </if>
@@ -407,6 +417,7 @@
       community_id = #{community_id,jdbcType=INTEGER},
       housey = #{housey,jdbcType=VARCHAR},
       housex = #{housex,jdbcType=VARCHAR},
+      user_phone = #{user_phone,jdbcType=VARCHAR},
       exam = #{exam,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

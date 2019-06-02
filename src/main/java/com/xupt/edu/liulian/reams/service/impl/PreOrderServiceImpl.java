@@ -15,5 +15,13 @@ public class PreOrderServiceImpl implements PreOrderService {
     public void add(PreOrder preOrder){
         preOrderMapper.insert(preOrder);
     }
+    @Override
+    public void delete(Integer id){
+        preOrderMapper.deleteByPrimaryKey(id);
+    }
+    @Override
+    public void update(PreOrder preOrder){
+        preOrderMapper.updateByPrimaryKeySelective(preOrder);
+    }
 
 }

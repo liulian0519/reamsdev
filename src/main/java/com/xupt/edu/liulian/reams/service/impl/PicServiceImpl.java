@@ -25,4 +25,8 @@ public class PicServiceImpl implements PicService{
     public void add(Pic pic){
         picMapper.insert(pic);
     }
+    @Override
+    public void update(Pic pic){
+        picMapper.updateByPrimaryKeySelective(pic);
+    }
 }

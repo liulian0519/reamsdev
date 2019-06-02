@@ -48,7 +48,7 @@
         <property name="typeAliasesPackage" value="com.xupt.edu.liulian.reams.pojo" />
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
-        <!--分页插件，目前先注释，后面重构的时候才会使用-->
+        <!--&lt;!&ndash;分页插件，目前先注释，后面重构的时候才会使用&ndash;&gt;-->
         <property name="plugins">
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">

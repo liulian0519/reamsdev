@@ -22,6 +22,8 @@
     <result column="community_id" jdbcType="INTEGER" property="community_id" />
     <result column="housey" jdbcType="VARCHAR" property="housey" />
     <result column="housex" jdbcType="VARCHAR" property="housex" />
+    <result column="rent_phone" jdbcType="VARCHAR" property="rent_phone" />
+    <result column="user_phone" jdbcType="VARCHAR" property="user_phone" />
     <result column="exam" jdbcType="INTEGER" property="exam" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -56,7 +58,7 @@
   <sql id="Base_Column_List">
     id, area, area_type, price, floor, build_type, position, decoration, ladder_house, 
     heating, elevator, build_use, right_age, con_time, mortgage, name, address, community_id, 
-    housey, housex, exam
+    housey, housex, rent_phone, user_phone, exam
   </sql>
   <select id="selectByExample" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouseExample" resultMap="BaseResultMap">
     select
@@ -90,14 +92,16 @@
       elevator, build_use, right_age, 
       con_time, mortgage, name, 
       address, community_id, housey, 
-      housex, exam)
+      housex, rent_phone, user_phone, 
+      exam)
     values (#{area,jdbcType=INTEGER}, #{area_type,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{floor,jdbcType=VARCHAR}, #{build_type,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
       #{decoration,jdbcType=VARCHAR}, #{ladder_house,jdbcType=VARCHAR}, #{heating,jdbcType=INTEGER}, 
       #{elevator,jdbcType=INTEGER}, #{build_use,jdbcType=VARCHAR}, #{right_age,jdbcType=VARCHAR}, 
       #{con_time,jdbcType=DATE}, #{mortgage,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{community_id,jdbcType=INTEGER}, #{housey,jdbcType=VARCHAR}, 
-      #{housex,jdbcType=VARCHAR}, #{exam,jdbcType=INTEGER})
+      #{housex,jdbcType=VARCHAR}, #{rent_phone,jdbcType=VARCHAR}, #{user_phone,jdbcType=VARCHAR}, 
+      #{exam,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xupt.edu.liulian.reams.pojo.GreenHouse" useGeneratedKeys="true">
     insert into greenhouse
@@ -158,6 +162,12 @@
       </if>
       <if test="housex != null">
         housex,
+      </if>
+      <if test="rent_phone != null">
+        rent_phone,
+      </if>
+      <if test="user_phone != null">
+        user_phone,
       </if>
       <if test="exam != null">
         exam,
@@ -220,6 +230,12 @@
       </if>
       <if test="housex != null">
         #{housex,jdbcType=VARCHAR},
+      </if>
+      <if test="rent_phone != null">
+        #{rent_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="user_phone != null">
+        #{user_phone,jdbcType=VARCHAR},
       </if>
       <if test="exam != null">
         #{exam,jdbcType=INTEGER},
@@ -286,6 +302,12 @@
       <if test="housex != null">
         housex = #{housex,jdbcType=VARCHAR},
       </if>
+      <if test="rent_phone != null">
+        rent_phone = #{rent_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="user_phone != null">
+        user_phone = #{user_phone,jdbcType=VARCHAR},
+      </if>
       <if test="exam != null">
         exam = #{exam,jdbcType=INTEGER},
       </if>
@@ -313,6 +335,8 @@
       community_id = #{community_id,jdbcType=INTEGER},
       housey = #{housey,jdbcType=VARCHAR},
       housex = #{housex,jdbcType=VARCHAR},
+      rent_phone = #{rent_phone,jdbcType=VARCHAR},
+      user_phone = #{user_phone,jdbcType=VARCHAR},
       exam = #{exam,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -27,6 +27,8 @@ public class SaleOrder {
 
     private Integer newhouse_id;
 
+    private String user_phone;
+
     private Integer renthouse_id;
 
     public Integer getId() {
@@ -44,7 +46,6 @@ public class SaleOrder {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
-
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getSale_time() {
         return sale_time;
@@ -108,6 +109,14 @@ public class SaleOrder {
 
     public void setNewhouse_id(Integer newhouse_id) {
         this.newhouse_id = newhouse_id;
+    }
+
+    public String getUser_phone() {
+        return user_phone;
+    }
+
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone == null ? null : user_phone.trim();
     }
 
     public Integer getRenthouse_id() {

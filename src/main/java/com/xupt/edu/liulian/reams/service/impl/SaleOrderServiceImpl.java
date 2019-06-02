@@ -24,6 +24,10 @@ public class SaleOrderServiceImpl implements SaleOrderService {
     public void add(SaleOrder saleOrder){
         saleOrderMapper.insert(saleOrder);
     }
+    @Override
+    public void update(SaleOrder saleOrder){
+        saleOrderMapper.updateByPrimaryKeySelective(saleOrder);
+    }
 //    @Autowired
 //    public Green selectByPhone(String phone){
 //        SaleOrderExample saleOrderExample = new SaleOrderExample();
