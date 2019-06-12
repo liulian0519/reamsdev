@@ -92,21 +92,14 @@ public class AgentController {
     @RequestMapping(value = "verfiycode", method = RequestMethod.GET)
     @ResponseBody
     public void getVerifyCodeImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-//        request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         VerifyCode verifyCode = new VerifyCode();
         BufferedImage bufferedImage = verifyCode.getImage();
         session_vcode = verifyCode.getText();
-
         Cookie cookie = new Cookie("session_vcode", verifyCode.getText());
         response.addCookie(cookie);
-
-//        response.addHeader("Set-Cookie",verifyCode.getText());
         VerifyCode.output(bufferedImage, response.getOutputStream());
     }
-
-//    @RequestMapping
     @RequestMapping(value = "verfiy", method = RequestMethod.POST)
     public void getVerfiy(@RequestParam("verfiycode") String verfiycode,
                           @RequestParam("phone") String phone, HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -141,7 +134,6 @@ public class AgentController {
         phone_code = code.getCode();
         JavaSmsApi.sendSms("48809fdf8978aee119b70a4143471973", "【创享实验室】您的验证码是" + phone_code + "。如非本人操作，请忽略本短信", phone);
         response.getWriter().close();//关闭输出流
-
     }
 
     @RequestMapping(value = "login")
